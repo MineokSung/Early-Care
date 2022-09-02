@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'color_info.dart';
 
 class Button extends StatelessWidget {
-  double verticalPadding = 0;
-  double horizontalPadding = 0;
-  String text = "";
-  double fontSize = 10;
-  Color backgroundColor = ColorInfo.mainColor;
-  Color textColor = ColorInfo.white;
+  double verticalPadding;
+  double horizontalPadding;
+  String text;
+  double fontSize;
+  Color backgroundColor;
+  Color textColor;
 
-  Button(this.verticalPadding, this.horizontalPadding, this.text, this.fontSize, this.backgroundColor, this.textColor);
+  //Button(this.verticalPadding, this.horizontalPadding, this.text, this.fontSize, this.backgroundColor, this.textColor);
+  Button(this.text, this.fontSize, this.backgroundColor, this.textColor, {this.verticalPadding = 10, this.horizontalPadding = 10});
+
 
   @override
   Widget build(BuildContext context) {

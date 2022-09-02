@@ -20,8 +20,8 @@ class _Login extends State<Login>
       body: SafeArea(
         child: Column(
           children: [
-            Button(10, 10, "first", 30, ColorInfo.mainColor, ColorInfo.white),
-            Button(30, 30, "first", 30, ColorInfo.mainColor, ColorInfo.white),
+            Button("first", 30, ColorInfo.mainColor, ColorInfo.white),
+            Button("first", 30, ColorInfo.mainColor, ColorInfo.white),
           ],
         ),
       ),
