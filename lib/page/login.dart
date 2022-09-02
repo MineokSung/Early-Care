@@ -1,4 +1,4 @@
-import 'package:early_care/component/button.dart';
+import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +16,12 @@ class _Login extends State<Login> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Button(
+              //test
+              EarlyCareButton(
+                width: double.infinity,
                 text: 'TEST',
-                backgroundColor: Colors.red,
                 onPressed: (){
                   print('a');
                 },
