@@ -63,11 +63,14 @@ class TextFieldLine extends StatelessWidget {
       alignment: Alignment.centerLeft,
       widthFactor: 1.0,
       heightFactor: 1.0,
-      child: Container(
-        alignment: Alignment.centerLeft,
-        width: prefixWidth ?? 50,
-        height: prefixHeight ?? 20,
-        child: Text(prefix!),
+      child: SizedBox(
+        //alignment: Alignment.centerLeft,
+        width: prefixWidth,
+        height: prefixHeight,
+        child: Container(
+          color: Colors.blue,
+          child: Text(prefix!),
+        ),
       ),
     );
   }
@@ -80,8 +83,8 @@ class TextFieldLine extends StatelessWidget {
       alignment: Alignment.centerLeft,
       widthFactor: 1.0,
       heightFactor: 1.0,
-      child: Container(
-        alignment: Alignment.centerLeft,
+      child: SizedBox(
+        //alignment: Alignment.centerLeft,
         width: suffixWidth ?? 50,
         height: suffixHeight ?? 20,
         child: Text(suffix!),

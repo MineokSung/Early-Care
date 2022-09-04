@@ -1,3 +1,4 @@
+import 'package:early_care/component/dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
 import 'package:early_care/component/textfield_line.dart';
@@ -16,6 +17,20 @@ class _Login extends State<Login> {
   String text = "ttest";
 
   void IsValid() {}
+
+  void callDialog()
+  {
+    showDialog(
+        //barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context)
+        {
+          return DialogConfirm(
+            title: 'title',
+            information: 'info',);
+        });
+
+  }
 
   Widget linePrefix() {
     if (text == '') {
@@ -71,12 +86,27 @@ class _Login extends State<Login> {
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //test
-              EarlyCareButton(
-                //width: double.infinity,
-                text: 'TEST',
-                onPressed: () {
-                  print('a');
-                },
+              Row(
+                children: [
+                  Expanded(
+                    child: EarlyCareButton(
+                      //width: double.infinity,
+                      text: 'TEST',
+                      onPressed: () {
+                        print('a');
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: EarlyCareButton(
+                      //width: double.infinity,
+                      text: 'TEST',
+                      onPressed: () {
+                        print('a');
+                      },
+                    ),
+                  ),
+                ],
               ),
 
               Container(
@@ -119,12 +149,25 @@ class _Login extends State<Login> {
                   //label: "asd",
                   //labelSize: 50,
                   //labelColor: ColorInfo.mainColor,
-                  textInputAlign: TextAlign.center,
+                  prefix: "asdasdasd",
+                  prefixWidth: 100,
                   hint: "asdasd",
+                  suffix: "asd",
 
                   //isUnderline: false,
                 ),
               ),
+
+              GestureDetector(
+                onTap: ()=>callDialog(),
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  child: Text("dialog"),
+                ),
+
+              ),
+
             ],
           ),
         ),
