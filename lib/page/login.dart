@@ -152,7 +152,9 @@ class _Login extends State<Login> {
                   prefix: "asdasdasd",
                   prefixWidth: 100,
                   hint: "asdasd",
+                  fontSize: 30,
                   suffix: "asd",
+
 
                   //isUnderline: false,
                 ),
