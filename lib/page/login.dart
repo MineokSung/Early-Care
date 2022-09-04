@@ -1,5 +1,6 @@
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/component/textfield_line.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -12,6 +13,53 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   TextEditingController textController = TextEditingController();
+  String text = "ttest";
+
+  void IsValid() {}
+
+  Widget linePrefix() {
+    if (text == '') {
+      return const SizedBox.shrink();
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      widthFactor: 1.0,
+      heightFactor: 1.0,
+      child: Container(
+        alignment: Alignment.centerLeft,
+        width: 80,
+        height: 50,
+        color: Colors.greenAccent,
+        child: Text(text),
+      ),
+    );
+  }
+
+  Widget lineSuffix() {
+    if (text == '') {
+      return const SizedBox.shrink();
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      widthFactor: 1.0,
+      heightFactor: 1.0,
+      child: Container(
+        alignment: Alignment.centerLeft,
+        width: 80,
+        height: 50,
+        color: Colors.greenAccent,
+        child: Text(text),
+      ),
+    );
+  }
+
+  BoxConstraints PrefixBoxConstraints() {
+    if (text == '') {
+      return const BoxConstraints(minHeight: 0, minWidth: 0);
+    }
+    return const BoxConstraints(minHeight: 0, minWidth: 0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,66 +74,55 @@ class _Login extends State<Login> {
               EarlyCareButton(
                 //width: double.infinity,
                 text: 'TEST',
-                onPressed: (){
+                onPressed: () {
                   print('a');
                 },
               ),
 
-
               Container(
                 margin: EdgeInsets.only(top: 30),
                 child: TextFormField(
+                  textAlignVertical: TextAlignVertical.center,
                   style: TextStyle(color: Colors.green),
                   //textAlign: TextAlign.left,
-
                   decoration: InputDecoration(
-                    hintText: "Enter Something", contentPadding: const EdgeInsets.all(20.0),
-                    // prefixIcon: Padding(
-                    //   padding: EdgeInsetsDirectional.only(top: 30),
-                    //   child: Text("jaebal"),
-                    // ),
+                    hintText: "Enter Something",
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                    prefixIcon: linePrefix(),
+                    prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                    suffixIcon: lineSuffix(),
+                    suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                    //alignLabelWithHint: true,
 
-
-                    // prefixIcon: const Align(
-                    //   alignment: Alignment.centerLeft,
-                    //   child: Text("jaebal"),
-                    // ),
-
-
-
-                    suffixIcon: Text("jaebal111", textAlign: TextAlign.end,),
-                    //contentPadding: EdgeInsets.only(left: 70),
-
-
-                    labelText: "asd",
-                    alignLabelWithHint: true,
-                    labelStyle: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: ColorInfo.mainColor,
-                      //fontSize: 14.0,
-                    ),
-                 fillColor: Colors.grey,
-                 //border: OutlineInputBorder(),
+                    fillColor: Colors.grey,
+                    //border: OutlineInputBorder(),
                   ),
 
-
-
-                  validator: (value)
-                  {
-                    if(value == null || value.isEmpty)
-                    {
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       //idFocus.requestFocus();
                       return "input id";
-                    }
-                    else
-                    {
+                    } else {
                       return null;
                     }
                   },
-                  onSaved: (value)
-                  {
+                  onSaved: (value) {
                     //id = value.toString();
                   },
+                ),
+              ),
+
+              Container(
+                margin: EdgeInsets.only(top: 30),
+                child: TextFieldLine(
+                  //label: "asd",
+                  //labelSize: 50,
+                  //labelColor: ColorInfo.mainColor,
+                  textInputAlign: TextAlign.center,
+                  hint: "asdasd",
+
+                  //isUnderline: false,
                 ),
               ),
             ],
