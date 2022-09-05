@@ -1,6 +1,7 @@
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/component/early_care_dialog_non_confirm.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:flutter/material.dart';
 
@@ -16,14 +17,14 @@ class _Login extends State<Login> {
   TextEditingController textController = TextEditingController();
   String text = "ttest";
 
-  void callDialog()
+  void callDialog1()
   {
     showDialog(
         //barrierDismissible: true,
         context: context,
         builder: (BuildContext context)
         {
-          return const DialogConfirm(
+          return const EarlyCareDialogConfirm(
             isHorizontal: true,
             title: 'title',
             cancelBackgroundColor: Colors.purpleAccent,
@@ -31,6 +32,24 @@ class _Login extends State<Login> {
             correctBackgroundColor: Colors.white,
             correctColor: Colors.blue,
             cancel: 'cancel',
+            correct: 'correct',
+            information: 'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            //widget: TextFieldLine(),
+          );
+        });
+  }
+
+  void callDialog2()
+  {
+    showDialog(
+      //barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context)
+        {
+          return const EarlyCareDialogNonConfirm(
+            title: 'title',
+            correctBackgroundColor: Colors.white,
+            correctColor: Colors.blue,
             correct: 'correct',
             information: 'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
             //widget: TextFieldLine(),
@@ -162,7 +181,7 @@ class _Login extends State<Login> {
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
-                child: const TextFieldLine(
+                child: const EarlyCareTextFieldLine(
                   //label: "asd",
                   //labelSize: 50,
                   //labelColor: ColorInfo.mainColor,
@@ -178,15 +197,24 @@ class _Login extends State<Login> {
               ),
 
               GestureDetector(
-                onTap: ()=> callDialog(),
+                onTap: ()=> callDialog1(),
                 child: Container(
+                  color: Colors.blue,
                   width: 100,
                   height: 50,
-                  child: const Text("dialog"),
+                  child: const Text("dialogConfirm"),
                 ),
-
               ),
 
+              GestureDetector(
+                onTap: ()=> callDialog2(),
+                child: Container(
+                  color: Colors.greenAccent,
+                  width: 150,
+                  height: 50,
+                  child: const Text("dialogNonConfirm"),
+                ),
+              ),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:early_care/component/color_info.dart';
 import 'package:flutter/material.dart';
 
-class TextFieldLine extends StatelessWidget {
+class EarlyCareTextFieldLine extends StatelessWidget {
   final EdgeInsets? padding;
   final String? hint;
   final String? label;
@@ -27,7 +27,7 @@ class TextFieldLine extends StatelessWidget {
   final FontWeight? fontWeight;
   final Widget? widget;
 
-  const TextFieldLine({
+  const EarlyCareTextFieldLine({
     super.key,
     this.hint,
     this.label,

@@ -2,50 +2,40 @@ import 'package:early_care/component/color_info.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:flutter/material.dart';
 
-class EarlyCareDialogConfirm extends StatelessWidget {
+class EarlyCareDialogNonConfirm extends StatelessWidget {
   final String title;
   final String information;
   final String? correct;
-  final String? cancel;
   final Color? titleColor;
   final Color? informationColor;
   final Color? correctColor;
-  final Color? cancelColor;
   final Color? correctBackgroundColor;
-  final Color? cancelBackgroundColor;
   final double? titleFontSize;
   final double? informationFontSize;
   final double? buttonFontSize;
   final EdgeInsets? titlePadding;
   final EdgeInsets? contentPadding;
   final EdgeInsets? actionPadding;
-  final bool? isHorizontal;
   final Widget? widget;
   final Function()? correctOnPressed;
-  final Function()? cancelOnPressed;
 
-  const EarlyCareDialogConfirm({
+  const EarlyCareDialogNonConfirm({
     super.key,
     required this.title,
     required this.information,
     this.correct,
-    this.cancel,
     this.titleColor,
     this.informationColor,
     this.correctColor,
-    this.cancelColor,
     this.correctBackgroundColor,
-    this.cancelBackgroundColor,
     this.titleFontSize,
     this.informationFontSize,
     this.buttonFontSize,
     this.titlePadding,
     this.contentPadding,
     this.actionPadding,
-    this.isHorizontal,
     this.widget,
     this.correctOnPressed,
-    this.cancelOnPressed,
   });
 
   Widget inputWidget() {
@@ -56,56 +46,17 @@ class EarlyCareDialogConfirm extends StatelessWidget {
     return const SizedBox.shrink();
   }
 
-  Widget buttonsInfo() {
-    if (isHorizontal == true) {
-      return Row(
-        children: [
-          Expanded(
-            child: EarlyCareButton(
-              text: cancel ?? '취소',
-              textColor: cancelColor,
-              fontSize: buttonFontSize,
-              backgroundColor: cancelBackgroundColor,
-              onPressed: ()=> cancelOnPressed,
-            ),
-          ),
-          Expanded(
-            child: EarlyCareButton(
-              text: correct ?? '확인',
-              textColor: correctColor,
-              fontSize: buttonFontSize,
-              backgroundColor: correctBackgroundColor,
-              onPressed: ()=> correctOnPressed,
-            ),
-          ),
-        ],
-      );
-    }
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: EarlyCareButton(
-            width: double.infinity,
-            text: cancel ?? '취소',
-            textColor: cancelColor,
-            fontSize: buttonFontSize,
-            backgroundColor: cancelBackgroundColor,
-            onPressed: cancelOnPressed,
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: EarlyCareButton(
-            width: double.infinity,
-            text: correct ?? '확인',
-            textColor: correctColor,
-            fontSize: buttonFontSize,
-            backgroundColor: correctBackgroundColor,
-            onPressed: correctOnPressed,
-          ),
-        ),
-      ],
+  Widget buttonInfo() {
+    return SizedBox(
+      width: double.infinity,
+      child: EarlyCareButton(
+        width: double.infinity,
+        text: correct ?? '확인',
+        textColor: correctColor,
+        fontSize: buttonFontSize,
+        backgroundColor: correctBackgroundColor,
+        onPressed: correctOnPressed,
+      ),
     );
   }
 
@@ -125,7 +76,6 @@ class EarlyCareDialogConfirm extends StatelessWidget {
               color: titleColor,
             ),
           ),
-
         ],
       ),
       content: Expanded(
@@ -147,7 +97,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        buttonsInfo(),
+        buttonInfo(),
       ],
     );
   }
