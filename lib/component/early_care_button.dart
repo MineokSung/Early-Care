@@ -33,16 +33,19 @@ class EarlyCareButton extends StatelessWidget {
           padding: padding,
           backgroundColor: backgroundColor ?? ColorInfo.mainColor,
         ),
-        onPressed: ()=> onPressed,
+        onPressed: () {
+          if (onPressed != null) {
+            onPressed!(); //() : 함수 실행의미
+          }
+        },
         child: Text(
           text,
           style: TextStyle(
-              color: textColor ?? ColorInfo.white,
-              fontSize: fontSize
+            color: textColor ?? ColorInfo.white,
+            fontSize: fontSize,
           ),
         ),
       ),
     );
   }
-
 }

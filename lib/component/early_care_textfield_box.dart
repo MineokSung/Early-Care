@@ -1,40 +1,45 @@
 import 'package:early_care/component/color_info.dart';
 import 'package:flutter/material.dart';
 
-class EarlyCareTextFieldLine extends StatelessWidget {
+class EarlyCareTextFieldBox extends StatelessWidget {
   final EdgeInsets? padding;
   final String? hint;
   final String? label;
   final Widget? prefix;
   final Widget? suffix;
   final double? width;
+  final double? height;
   final double? fontSize;
   final double? labelSize;
   final double? prefixWidth;
   final double? prefixHeight;
   final double? suffixWidth;
   final double? suffixHeight;
+  final double? boxBorderRadius;
   final bool? isSecret;
   final bool? isUnderline;
   final Color? textColor;
   final Color? hintColor;
   final Color? labelColor;
-  final Color? enableBorderColor;
-  final Color? focusBorderColor;
+  final Color? boxColor;
+  final Function()? prefixOnTap;
+  final Function()? suffixOnTap;
   final TextEditingController? controller;
+  final int? maxLine;
   final FocusNode? focusNode;
   final TextInputType? textInputType;
   final TextAlign? textInputAlign;
   final FontWeight? fontWeight;
   final Widget? widget;
 
-  const EarlyCareTextFieldLine({
+  const EarlyCareTextFieldBox({
     super.key,
     this.hint,
     this.label,
     this.prefix,
     this.suffix,
     this.width,
+    this.height,
     this.fontWeight,
     this.labelSize,
     this.padding,
@@ -43,14 +48,17 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     this.prefixHeight,
     this.suffixWidth,
     this.suffixHeight,
+    this.controller,
+    this.boxBorderRadius,
     this.isSecret,
     this.isUnderline = true,
     this.textColor,
     this.hintColor,
     this.labelColor,
-    this.enableBorderColor,
-    this.focusBorderColor,
-    this.controller,
+    this.boxColor,
+    this.prefixOnTap,
+    this.suffixOnTap,
+    this.maxLine,
     this.focusNode,
     this.textInputAlign,
     this.textInputType,
@@ -68,9 +76,13 @@ class EarlyCareTextFieldLine extends StatelessWidget {
       child: SizedBox(
         width: prefixWidth,
         height: prefixHeight,
-        child: Container(
-          color: Colors.blue,
+        child: GestureDetector(
           child: prefix!,
+          onTap: () {
+            if (prefixOnTap != null) {
+              prefixOnTap!();
+            }
+          },
         ),
       ),
     );
@@ -87,34 +99,48 @@ class EarlyCareTextFieldLine extends StatelessWidget {
       child: SizedBox(
         width: suffixWidth,
         height: suffixHeight,
-        child: suffix!,
+        child: GestureDetector(
+          child: suffix!,
+          // onTap: () {
+          //   if (suffixTouch != null) {
+          //     suffixTouch!();
+          //   }
+          // },
+          onTap: ()=> suffixOnTap != null ? suffixOnTap!() : null,
+        ),
       ),
     );
   }
 
-  InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
-  {
-    if (isUnderline == false) {
-      return InputBorder.none;
-    }
-    else if (type == 1) {
-      return UnderlineInputBorder(
-        borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
-      );
-    }
-    return UnderlineInputBorder(
-      borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
-    );
-  }
+  // InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
+  // {
+  //   if (isUnderline == false) {
+  //     return InputBorder.none;
+  //   }
+  //   else if (type == 1) {
+  //     return UnderlineInputBorder(
+  //       borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
+  //     );
+  //   }
+  //   return UnderlineInputBorder(
+  //     borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width ?? double.infinity,
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: boxColor ?? Colors.grey,
+        borderRadius: BorderRadius.circular((boxBorderRadius ?? 10)),
+      ),
       child: TextFormField(
         textAlignVertical: TextAlignVertical.center,
         textAlign: textInputAlign ?? TextAlign.left,
         controller: controller,
+        maxLines: maxLine ?? 1,
         style: TextStyle(
           color: textColor ?? Colors.black,
           fontSize: fontSize,
@@ -124,9 +150,11 @@ class EarlyCareTextFieldLine extends StatelessWidget {
           isDense: true,
           contentPadding: padding,
           prefixIcon: prefixLine(),
-          prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          prefixIconConstraints:
+              const BoxConstraints(minWidth: 0, minHeight: 0),
           suffixIcon: suffixLine(),
-          suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          suffixIconConstraints:
+              const BoxConstraints(minWidth: 0, minHeight: 0),
           hintText: hint,
           hintStyle: TextStyle(
             color: hintColor,
@@ -134,8 +162,7 @@ class EarlyCareTextFieldLine extends StatelessWidget {
           ),
           labelText: label,
           labelStyle: TextStyle(color: labelColor, fontSize: labelSize),
-          enabledBorder: underlineInfo(1),
-          focusedBorder: underlineInfo(2),
+          border: InputBorder.none,
         ),
         obscureText: isSecret ?? false,
         keyboardType: textInputType ?? TextInputType.text,

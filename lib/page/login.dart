@@ -2,6 +2,7 @@ import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
 import 'package:early_care/component/early_care_dialog_non_confirm.dart';
+import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,15 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  TextEditingController textController = TextEditingController();
+  TextEditingController textController1 = TextEditingController();
   String text = "ttest";
+
+  @override
+  void dispose(){
+    super.dispose();
+
+
+  }
 
   void callDialog1()
   {
@@ -37,6 +45,11 @@ class _Login extends State<Login> {
             //widget: TextFieldLine(),
           );
         });
+  }
+
+  void deleteText()
+  {
+    textController1.clear();
   }
 
   void callDialog2()
@@ -94,6 +107,12 @@ class _Login extends State<Login> {
     );
   }
 
+   void testPrint()
+  {
+    String testText = 'tttttest';
+    print(testText);
+  }
+
   BoxConstraints PrefixBoxConstraints() {
     if (text == '') {
       return const BoxConstraints(minHeight: 0, minWidth: 0);
@@ -106,7 +125,7 @@ class _Login extends State<Login> {
     return Scaffold(
       backgroundColor: ColorInfo.white,
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,28 +134,29 @@ class _Login extends State<Login> {
               Row(
                 children: [
                   Expanded(
-                    child: EarlyCareButton(
+                    child: ElevatedButton(
                       //width: double.infinity,
-                      text: 'TEST',
-                      backgroundColor: Colors.purpleAccent,
+                      child:  Text('TEST1'),
+                      //backgroundColor: Colors.purpleAccent,
                       onPressed: () {
-                        print('a');
+                        String asd = 'asd';
+                        print(asd);
                       },
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: EarlyCareButton(
-                      text: 'test' ?? '취소',
+                      text: 'test2' ?? '취소',
                       textColor: Colors.blue,
                       fontSize: 20,
                       backgroundColor: Colors.cyan,
-
+                      onPressed: testPrint,
                     ),
                   ),
                   Expanded(
                     child: EarlyCareButton(
                       //width: double.infinity,
-                      text: 'TEST',
+                      text: 'TEST3',
                       onPressed: () {
                         print('a');
                       },
@@ -179,17 +199,75 @@ class _Login extends State<Login> {
                 ),
               ),
 
+
+
+
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular((10)),
+                  ),
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical.center,
+                    style: const TextStyle(color: Colors.green),
+                    //textAlign: TextAlign.left,
+                    decoration: InputDecoration(
+                      hintText: "Enter Something",
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
+                      prefixIcon: linePrefix(),
+                      prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                      suffixIcon: lineSuffix(),
+                      suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                      //alignLabelWithHint: true,
+
+                      fillColor: Colors.greenAccent,
+                      border: InputBorder.none,
+                    ),
+
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        //idFocus.requestFocus();
+                        return "input id";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      //id = value.toString();
+                    },
+                  ),
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: EarlyCareTextFieldBox(
+                  prefix: Text("prefixTouch"),
+                  prefixOnTap: testPrint,
+                  suffix: Icon(Icons.call),
+                  suffixOnTap: deleteText,
+                  controller: textController1,
+                ),
+              ),
+
+
+
+
+
               Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: const EarlyCareTextFieldLine(
                   //label: "asd",
                   //labelSize: 50,
                   //labelColor: ColorInfo.mainColor,
-                  prefix: "asdasdasd",
+                  prefix: Text('asdasdasd'),
                   prefixWidth: 100,
                   hint: "asdasd",
                   fontSize: 30,
-                  suffix: "asd",
+                  suffix: Text('asdasd'),
 
 
                   //isUnderline: false,
