@@ -112,21 +112,6 @@ class EarlyCareTextFieldBox extends StatelessWidget {
     );
   }
 
-  // InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
-  // {
-  //   if (isUnderline == false) {
-  //     return InputBorder.none;
-  //   }
-  //   else if (type == 1) {
-  //     return UnderlineInputBorder(
-  //       borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
-  //     );
-  //   }
-  //   return UnderlineInputBorder(
-  //     borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(

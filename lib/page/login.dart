@@ -1,9 +1,10 @@
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
-import 'package:early_care/component/early_care_dialog_non_confirm.dart';
+import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
+import 'package:early_care/component/test.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -19,56 +20,63 @@ class _Login extends State<Login> {
   String text = "ttest";
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
-
-
   }
 
-  void callDialog1()
-  {
-    showDialog(
-        //barrierDismissible: true,
-        context: context,
-        builder: (BuildContext context)
-        {
-          return const EarlyCareDialogConfirm(
-            isHorizontal: true,
-            title: 'title',
-            cancelBackgroundColor: Colors.purpleAccent,
-            cancelColor: Colors.greenAccent,
-            correctBackgroundColor: Colors.white,
-            correctColor: Colors.blue,
-            cancel: 'cancel',
-            correct: 'correct',
-            information: 'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
-            //widget: TextFieldLine(),
-          );
-        });
-  }
-
-  void deleteText()
-  {
-    textController1.clear();
-  }
-
-  void callDialog2()
-  {
+  void callDialog1() {
     showDialog(
       //barrierDismissible: true,
         context: context,
-        builder: (BuildContext context)
-        {
-          return const EarlyCareDialogNonConfirm(
+        builder: (BuildContext context) {
+          return const EarlyCareDialogConfirm(
+            // isHorizontal: true,
+            title: 'title',
+            isConfirm: false,
+            isHorizontal: true,
+            // cancelBackgroundColor: Colors.white,
+            // cancelColor: Colors.black,
+            // correctBackgroundColor: Colors.white,
+            // correctColor: Colors.blue,
+            // cancel: 'cancel',
+            // correct: 'correct',
+             information:
+             'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            //widget: TextFieldLine(),
+          );
+        });
+  }
+
+  void callDialog3() {
+    showDialog(
+      //barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+          return const GGAlertDialog(
+            body: 'asdasd',
+          );
+        });
+  }
+
+  void deleteText() {
+    textController1.clear();
+  }
+
+  void callDialog2() {
+    showDialog(
+      //barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+          return const EarlyCareDialogConfirm(
             title: 'title',
             correctBackgroundColor: Colors.white,
             correctColor: Colors.blue,
             correct: 'correct',
-            information: 'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            information:
+            'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
             //widget: TextFieldLine(),
           );
         });
-
   }
 
   Widget linePrefix() {
@@ -83,7 +91,7 @@ class _Login extends State<Login> {
         alignment: Alignment.centerLeft,
         width: 80,
         height: 50,
-        color: Colors.greenAccent,
+        //color: Colors.greenAccent,
         child: Text(text),
       ),
     );
@@ -107,8 +115,7 @@ class _Login extends State<Login> {
     );
   }
 
-   void testPrint()
-  {
+  void testPrint() {
     String testText = 'tttttest';
     print(testText);
   }
@@ -136,7 +143,7 @@ class _Login extends State<Login> {
                   Expanded(
                     child: ElevatedButton(
                       //width: double.infinity,
-                      child:  Text('TEST1'),
+                      child: Text('TEST1'),
                       //backgroundColor: Colors.purpleAccent,
                       onPressed: () {
                         String asd = 'asd';
@@ -176,9 +183,11 @@ class _Login extends State<Login> {
                     isDense: true,
                     contentPadding: EdgeInsets.zero,
                     prefixIcon: linePrefix(),
-                    prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                    prefixIconConstraints:
+                    const BoxConstraints(minWidth: 0, minHeight: 0),
                     suffixIcon: lineSuffix(),
-                    suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                    suffixIconConstraints:
+                    const BoxConstraints(minWidth: 0, minHeight: 0),
                     //alignLabelWithHint: true,
 
                     fillColor: Colors.grey,
@@ -199,9 +208,6 @@ class _Login extends State<Login> {
                 ),
               ),
 
-
-
-
               Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: Container(
@@ -218,9 +224,11 @@ class _Login extends State<Login> {
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
                       prefixIcon: linePrefix(),
-                      prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                      prefixIconConstraints:
+                      const BoxConstraints(minWidth: 0, minHeight: 0),
                       suffixIcon: lineSuffix(),
-                      suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                      suffixIconConstraints:
+                      const BoxConstraints(minWidth: 0, minHeight: 0),
                       //alignLabelWithHint: true,
 
                       fillColor: Colors.greenAccent,
@@ -253,9 +261,54 @@ class _Login extends State<Login> {
                 ),
               ),
 
+              SizedBox(
+                //margin: const EdgeInsets.only(top: 30),
+                //width: 100,
+                height: 30,
 
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "title",
+                        ),
+                        Text(
+                          "value",
+                        ),
+                      ],
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: LinearProgressIndicator(
+                        value: 0.7,
+                        minHeight: 5,
+                        color: Colors.greenAccent,
+                        backgroundColor: Colors.grey,
+                        semanticsLabel: "start",
+                        semanticsValue: 'end',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: EarlyCareProgressBar(
+                  value: (1/6)*2,
+                  titleLeft: Text(
+                    "titleLeft",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                    ),
+                  ),
 
+                ),
+              ),
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
@@ -269,13 +322,12 @@ class _Login extends State<Login> {
                   fontSize: 30,
                   suffix: Text('asdasd'),
 
-
                   //isUnderline: false,
                 ),
               ),
 
               GestureDetector(
-                onTap: ()=> callDialog1(),
+                onTap: () => callDialog1(),
                 child: Container(
                   color: Colors.blue,
                   width: 100,
@@ -285,7 +337,18 @@ class _Login extends State<Login> {
               ),
 
               GestureDetector(
-                onTap: ()=> callDialog2(),
+                onTap: () => callDialog2(),
+                child: Container(
+                  color: Colors.greenAccent,
+                  width: 150,
+                  height: 50,
+                  child: const Text("dialogNonConfirm"),
+                ),
+              ),
+
+
+              GestureDetector(
+                onTap: () => callDialog3(),
                 child: Container(
                   color: Colors.greenAccent,
                   width: 150,
