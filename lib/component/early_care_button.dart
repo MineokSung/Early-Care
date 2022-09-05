@@ -33,7 +33,7 @@ class EarlyCareButton extends StatelessWidget {
           padding: padding,
           backgroundColor: backgroundColor ?? ColorInfo.mainColor,
         ),
-        onPressed: onPressed,
+        onPressed: ()=> onPressed,
         child: Text(
           text,
           style: TextStyle(

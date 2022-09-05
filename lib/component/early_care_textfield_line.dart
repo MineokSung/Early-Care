@@ -64,7 +64,6 @@ class TextFieldLine extends StatelessWidget {
       widthFactor: 1.0,
       heightFactor: 1.0,
       child: SizedBox(
-        //alignment: Alignment.centerLeft,
         width: prefixWidth,
         height: prefixHeight,
         child: Container(
@@ -80,13 +79,12 @@ class TextFieldLine extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       widthFactor: 1.0,
       heightFactor: 1.0,
       child: SizedBox(
-        //alignment: Alignment.centerLeft,
-        width: suffixWidth ?? 50,
-        height: suffixHeight ?? 20,
+        width: suffixWidth,
+        height: suffixHeight,
         child: Text(suffix!),
       ),
     );

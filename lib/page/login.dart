@@ -1,11 +1,11 @@
-import 'package:early_care/component/dialog_confirm.dart';
+import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
-import 'package:early_care/component/textfield_line.dart';
+import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  TextPosition textPosition = TextPosition(offset: 10);
+  TextPosition textPosition = const TextPosition(offset: 10);
 
   //final controller = TextSelection.fromPosition(10);
   @override
@@ -16,8 +16,6 @@ class _Login extends State<Login> {
   TextEditingController textController = TextEditingController();
   String text = "ttest";
 
-  void IsValid() {}
-
   void callDialog()
   {
     showDialog(
@@ -25,9 +23,18 @@ class _Login extends State<Login> {
         context: context,
         builder: (BuildContext context)
         {
-          return DialogConfirm(
+          return const DialogConfirm(
+            isHorizontal: true,
             title: 'title',
-            information: 'info',);
+            cancelBackgroundColor: Colors.purpleAccent,
+            cancelColor: Colors.greenAccent,
+            correctBackgroundColor: Colors.white,
+            correctColor: Colors.blue,
+            cancel: 'cancel',
+            correct: 'correct',
+            information: 'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            //widget: TextFieldLine(),
+          );
         });
 
   }
@@ -59,7 +66,7 @@ class _Login extends State<Login> {
       widthFactor: 1.0,
       heightFactor: 1.0,
       child: Container(
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         width: 80,
         height: 50,
         color: Colors.greenAccent,
@@ -92,9 +99,19 @@ class _Login extends State<Login> {
                     child: EarlyCareButton(
                       //width: double.infinity,
                       text: 'TEST',
+                      backgroundColor: Colors.purpleAccent,
                       onPressed: () {
                         print('a');
                       },
+                    ),
+                  ),
+                  const Expanded(
+                    child: EarlyCareButton(
+                      text: 'test' ?? '취소',
+                      textColor: Colors.blue,
+                      fontSize: 20,
+                      backgroundColor: Colors.cyan,
+
                     ),
                   ),
                   Expanded(
@@ -110,10 +127,10 @@ class _Login extends State<Login> {
               ),
 
               Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 child: TextFormField(
                   textAlignVertical: TextAlignVertical.center,
-                  style: TextStyle(color: Colors.green),
+                  style: const TextStyle(color: Colors.green),
                   //textAlign: TextAlign.left,
                   decoration: InputDecoration(
                     hintText: "Enter Something",
@@ -144,8 +161,8 @@ class _Login extends State<Login> {
               ),
 
               Container(
-                margin: EdgeInsets.only(top: 30),
-                child: TextFieldLine(
+                margin: const EdgeInsets.only(top: 30),
+                child: const TextFieldLine(
                   //label: "asd",
                   //labelSize: 50,
                   //labelColor: ColorInfo.mainColor,
@@ -161,11 +178,11 @@ class _Login extends State<Login> {
               ),
 
               GestureDetector(
-                onTap: ()=>callDialog(),
+                onTap: ()=> callDialog(),
                 child: Container(
                   width: 100,
                   height: 50,
-                  child: Text("dialog"),
+                  child: const Text("dialog"),
                 ),
 
               ),
