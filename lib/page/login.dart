@@ -1,6 +1,7 @@
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/component/early_care_picker.dart';
 import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
@@ -9,7 +10,9 @@ import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
   TextPosition textPosition = const TextPosition(offset: 10);
+  String cupertinoResult = 'asd';
 
+  //EarlyCarePicker earlyCarePicker = EarlyCarePicker(data: data, setDataCallbackListener: setDataCallbackListener)
   //final controller = TextSelection.fromPosition(10);
   @override
   _Login createState() => _Login();
@@ -18,15 +21,50 @@ class Login extends StatefulWidget {
 class _Login extends State<Login> {
   TextEditingController textController1 = TextEditingController();
   String text = "ttest";
+  String cupertino = 'initialize';
 
   @override
   void dispose() {
     super.dispose();
   }
 
+  dynamic getValue(String result)
+  {
+    widget.cupertinoResult = result;
+  }
+
+  void buttonActivated()
+  {
+    if(textController1.text.length < 2){
+      print("empty");
+    }
+    else{
+
+      print("non-empty");
+    }
+    setState(() {
+
+    });
+  }
+  
+  Widget activatedButton()
+  {
+    if(textController1.text.length < 2){
+      return  EarlyCareButton(
+        text: '확인' ?? '취소',
+        onPressed: buttonActivated,
+      );
+    }
+    return  EarlyCareButton(
+      text: '변경' ?? '취소',
+      onPressed: buttonActivated,
+    );
+  }
+
+
   void callDialog1() {
     showDialog(
-      //barrierDismissible: true,
+        //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return const EarlyCareDialogConfirm(
@@ -40,8 +78,7 @@ class _Login extends State<Login> {
             // correctColor: Colors.blue,
             // cancel: 'cancel',
             // correct: 'correct',
-             information:
-             'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            information: 'info',
             //widget: TextFieldLine(),
           );
         });
@@ -49,7 +86,7 @@ class _Login extends State<Login> {
 
   void callDialog3() {
     showDialog(
-      //barrierDismissible: true,
+        //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return const GGAlertDialog(
@@ -64,7 +101,7 @@ class _Login extends State<Login> {
 
   void callDialog2() {
     showDialog(
-      //barrierDismissible: true,
+        //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return const EarlyCareDialogConfirm(
@@ -72,8 +109,7 @@ class _Login extends State<Login> {
             correctBackgroundColor: Colors.white,
             correctColor: Colors.blue,
             correct: 'correct',
-            information:
-            'infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo',
+            information: 'info',
             //widget: TextFieldLine(),
           );
         });
@@ -151,13 +187,14 @@ class _Login extends State<Login> {
                       },
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: EarlyCareButton(
-                      text: 'test2' ?? '취소',
-                      textColor: Colors.blue,
-                      fontSize: 20,
-                      backgroundColor: Colors.cyan,
-                      onPressed: testPrint,
+                      //width: 20,
+                       text: '확인' ?? '취소',
+                      // textColor: Colors.blue,
+                      // fontSize: 20,
+                      // backgroundColor: Colors.cyan,
+                      // onPressed: testPrint,
                     ),
                   ),
                   Expanded(
@@ -184,10 +221,10 @@ class _Login extends State<Login> {
                     contentPadding: EdgeInsets.zero,
                     prefixIcon: linePrefix(),
                     prefixIconConstraints:
-                    const BoxConstraints(minWidth: 0, minHeight: 0),
+                        const BoxConstraints(minWidth: 0, minHeight: 0),
                     suffixIcon: lineSuffix(),
                     suffixIconConstraints:
-                    const BoxConstraints(minWidth: 0, minHeight: 0),
+                        const BoxConstraints(minWidth: 0, minHeight: 0),
                     //alignLabelWithHint: true,
 
                     fillColor: Colors.grey,
@@ -225,10 +262,10 @@ class _Login extends State<Login> {
                       contentPadding: EdgeInsets.zero,
                       prefixIcon: linePrefix(),
                       prefixIconConstraints:
-                      const BoxConstraints(minWidth: 0, minHeight: 0),
+                          const BoxConstraints(minWidth: 0, minHeight: 0),
                       suffixIcon: lineSuffix(),
                       suffixIconConstraints:
-                      const BoxConstraints(minWidth: 0, minHeight: 0),
+                          const BoxConstraints(minWidth: 0, minHeight: 0),
                       //alignLabelWithHint: true,
 
                       fillColor: Colors.greenAccent,
@@ -298,7 +335,7 @@ class _Login extends State<Login> {
               Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: EarlyCareProgressBar(
-                  value: (1/6)*2,
+                  value: (1 / 6) * 2,
                   titleLeft: Text(
                     "titleLeft",
                     style: TextStyle(
@@ -306,7 +343,6 @@ class _Login extends State<Login> {
                       color: Colors.blue,
                     ),
                   ),
-
                 ),
               ),
 
@@ -346,7 +382,6 @@ class _Login extends State<Login> {
                 ),
               ),
 
-
               GestureDetector(
                 onTap: () => callDialog3(),
                 child: Container(
@@ -355,6 +390,50 @@ class _Login extends State<Login> {
                   height: 50,
                   child: const Text("dialogNonConfirm"),
                 ),
+              ),
+
+
+
+
+              Container(
+                width: 500,
+                height: 500,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Text(widget.cupertinoResult),
+                    Container(
+                      width: 300,
+                      height: 350,
+                      child: EarlyCarePicker(
+                        data: ["11", "12", "13", "14", "15", "16", "17", "18", "19"],
+                        isHorizontal: true,
+                        callback: (val){
+                          print('callbackFunction: $val');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: EarlyCareTextFieldBox(
+                  prefix: Text("prefixTouch222"),
+                  prefixOnTap: testPrint,
+                  suffix: Icon(Icons.call),
+                  suffixOnTap: deleteText,
+                  controller: textController1,
+                ),
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: activatedButton(),
+                  ),
+                ],
               ),
             ],
           ),

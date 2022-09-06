@@ -119,7 +119,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: boxColor ?? Colors.grey,
-        borderRadius: BorderRadius.circular((boxBorderRadius ?? 10)),
+        borderRadius: BorderRadius.circular(boxBorderRadius ?? 10),
       ),
       child: TextFormField(
         textAlignVertical: TextAlignVertical.center,

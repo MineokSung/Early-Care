@@ -92,12 +92,12 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     );
   }
 
-  InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
+  InputBorder underlineInfo(
+      int type) //1 = enableBorderline, 2 = focusBorderline
   {
     if (isUnderline == false) {
       return InputBorder.none;
-    }
-    else if (type == 1) {
+    } else if (type == 1) {
       return UnderlineInputBorder(
         borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
       );
@@ -124,9 +124,15 @@ class EarlyCareTextFieldLine extends StatelessWidget {
           isDense: true,
           contentPadding: padding,
           prefixIcon: prefixLine(),
-          prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          prefixIconConstraints: const BoxConstraints(
+            minWidth: 0,
+            minHeight: 0,
+          ),
           suffixIcon: suffixLine(),
-          suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          suffixIconConstraints: const BoxConstraints(
+            minWidth: 0,
+            minHeight: 0,
+          ),
           hintText: hint,
           hintStyle: TextStyle(
             color: hintColor,

@@ -9,17 +9,21 @@ class EarlyCareButton extends StatelessWidget {
   final double? height;
   final Color? backgroundColor;
   final Color? textColor;
+  final bool? isActivated;
+  final double? radius;
   final Function()? onPressed;
 
   const EarlyCareButton({
     super.key,
     required this.text,
     this.padding,
-    this.fontSize = 10,
+    this.fontSize,
     this.width,
     this.height,
     this.backgroundColor,
     this.textColor,
+    this.isActivated,
+    this.radius,
     this.onPressed,
   });
 
@@ -30,8 +34,11 @@ class EarlyCareButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: padding,
-          backgroundColor: backgroundColor ?? ColorInfo.mainColor,
+          padding: padding ?? const EdgeInsets.symmetric(vertical: 18),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius ?? 16),
+          ),
+          backgroundColor: backgroundColor ?? ColorInfo.mainColor.withOpacity(0.6),
         ),
         onPressed: () {
           if (onPressed != null) {
@@ -42,7 +49,8 @@ class EarlyCareButton extends StatelessWidget {
           text,
           style: TextStyle(
             color: textColor ?? ColorInfo.white,
-            fontSize: fontSize,
+            fontSize: fontSize ?? 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

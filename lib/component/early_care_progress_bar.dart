@@ -31,28 +31,6 @@ class EarlyCareProgressBar extends StatefulWidget {
 }
 
 class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
-  // double? width;
-  // double? height;
-  // double? minHeight;
-  // double? borderRadius;
-  // double? value;
-  // Color? color;
-  // Color? backgroundColor;
-  // Widget? titleLeft;
-  // Widget? titleRight;
-  //
-  // _EarlyCareProgressBar({
-  //   this.width,
-  //   this.height,
-  //   this.minHeight,
-  //   this.borderRadius,
-  //   this.value,
-  //   this.color,
-  //   this.backgroundColor,
-  //   this.titleLeft,
-  //   this.titleRight,
-  // });
-
   Widget titleInfo() {
     if (widget.titleLeft != null) {
       return widget.titleLeft!;
