@@ -31,6 +31,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
   final TextAlign? textInputAlign;
   final FontWeight? fontWeight;
   final Widget? widget;
+  final Function(String)? onChanged;
 
   const EarlyCareTextFieldBox({
     super.key,
@@ -63,6 +64,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
     this.textInputAlign,
     this.textInputType,
     this.widget,
+    this.onChanged,
   });
 
   Widget prefixLine() {
@@ -126,6 +128,12 @@ class EarlyCareTextFieldBox extends StatelessWidget {
         textAlign: textInputAlign ?? TextAlign.left,
         controller: controller,
         maxLines: maxLine ?? 1,
+        onChanged: (String value){
+          if(onChanged != null){
+            onChanged!(value);
+          }
+
+        },
         style: TextStyle(
           color: textColor ?? Colors.black,
           fontSize: fontSize,

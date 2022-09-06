@@ -23,44 +23,40 @@ class _Login extends State<Login> {
   String text = "ttest";
   String cupertino = 'initialize';
 
+  String testCallback = 'false';
+
   @override
   void dispose() {
     super.dispose();
   }
 
-  dynamic getValue(String result)
-  {
+  dynamic getValue(String result) {
     widget.cupertinoResult = result;
   }
 
-  void buttonActivated()
-  {
-    if(textController1.text.length < 2){
+  void buttonActivated() {
+    if (textController1.text.length < 2) {
       print("empty");
-    }
-    else{
-
+    } else {
       print("non-empty");
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
-  
-  Widget activatedButton()
-  {
-    if(textController1.text.length < 2){
-      return  EarlyCareButton(
+
+
+  Widget activatedButton() {
+    if (testCallback == 'false') {
+
+      return EarlyCareButton(
         text: '확인' ?? '취소',
         onPressed: buttonActivated,
       );
     }
-    return  EarlyCareButton(
+    return EarlyCareButton(
       text: '변경' ?? '취소',
       onPressed: buttonActivated,
     );
   }
-
 
   void callDialog1() {
     showDialog(
@@ -190,7 +186,7 @@ class _Login extends State<Login> {
                   const Expanded(
                     child: EarlyCareButton(
                       //width: 20,
-                       text: '확인' ?? '취소',
+                      text: '확인' ?? '취소',
                       // textColor: Colors.blue,
                       // fontSize: 20,
                       // backgroundColor: Colors.cyan,
@@ -220,11 +216,9 @@ class _Login extends State<Login> {
                     isDense: true,
                     contentPadding: EdgeInsets.zero,
                     prefixIcon: linePrefix(),
-                    prefixIconConstraints:
-                        const BoxConstraints(minWidth: 0, minHeight: 0),
+                    prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
                     suffixIcon: lineSuffix(),
-                    suffixIconConstraints:
-                        const BoxConstraints(minWidth: 0, minHeight: 0),
+                    suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
                     //alignLabelWithHint: true,
 
                     fillColor: Colors.grey,
@@ -261,11 +255,9 @@ class _Login extends State<Login> {
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
                       prefixIcon: linePrefix(),
-                      prefixIconConstraints:
-                          const BoxConstraints(minWidth: 0, minHeight: 0),
+                      prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
                       suffixIcon: lineSuffix(),
-                      suffixIconConstraints:
-                          const BoxConstraints(minWidth: 0, minHeight: 0),
+                      suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
                       //alignLabelWithHint: true,
 
                       fillColor: Colors.greenAccent,
@@ -392,9 +384,6 @@ class _Login extends State<Login> {
                 ),
               ),
 
-
-
-
               Container(
                 width: 500,
                 height: 500,
@@ -408,7 +397,7 @@ class _Login extends State<Login> {
                       child: EarlyCarePicker(
                         data: ["11", "12", "13", "14", "15", "16", "17", "18", "19"],
                         isHorizontal: true,
-                        callback: (val){
+                        callback: (val) {
                           print('callbackFunction: $val');
                         },
                       ),
@@ -424,6 +413,14 @@ class _Login extends State<Login> {
                   prefixOnTap: testPrint,
                   suffix: Icon(Icons.call),
                   suffixOnTap: deleteText,
+                  onChanged: (value) {
+                    setState(() {
+                      testCallback = (value.length > 2).toString();
+                    });
+
+                    print(value);
+
+                  },
                   controller: textController1,
                 ),
               ),
