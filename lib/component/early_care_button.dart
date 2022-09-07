@@ -42,14 +42,14 @@ class EarlyCareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
+      width: width ?? double.infinity,
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
           padding: padding ??
               const EdgeInsets.symmetric(
-                vertical: 18,
+                vertical: 15,
               ),
           shape: RoundedRectangleBorder(
             side: isBorder == false ? BorderSide.none : BorderSide(

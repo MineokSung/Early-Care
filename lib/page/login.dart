@@ -62,6 +62,19 @@ class _Login extends State<Login> {
     setState(() {});
   }
 
+  // BorderSide copyWith({
+  //   Color? color,
+  //   double? width,
+  //   BorderStyle? style,
+  // }) {
+  //   assert(width == null || width >= 0.0);
+  //   return BorderSide(
+  //     color: color ?? this.color,
+  //     width: width ?? this.width,
+  //     style: style ?? this.style,
+  //   );
+  // }
+
   Widget activatedButton() {
     if (testCallback == 'false') {
       return EarlyCareButton(
@@ -80,11 +93,11 @@ class _Login extends State<Login> {
         //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
-          return const EarlyCareDialogConfirm(
-            // isHorizontal: true,
+          return EarlyCareDialogConfirm(
             title: 'title',
-            isConfirm: false,
+            isShowCancel: false,
             isHorizontal: true,
+
             // cancelBackgroundColor: Colors.white,
             // cancelColor: Colors.black,
             // correctBackgroundColor: Colors.white,
@@ -180,11 +193,12 @@ class _Login extends State<Login> {
         //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
-          return const EarlyCareDialogConfirm(
+          return EarlyCareDialogConfirm(
             title: 'title',
+            isShowCancel: true,
+            isHorizontal: false,
             correctBackgroundColor: Colors.white,
             correctColor: Colors.blue,
-            correct: 'correct',
             information: 'info',
             //widget: TextFieldLine(),
           );
@@ -389,7 +403,7 @@ class _Login extends State<Login> {
                         ),
                       ],
                     ),
-                    ClipRRect(
+                    const ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: LinearProgressIndicator(
                         value: 0.7,
@@ -406,7 +420,7 @@ class _Login extends State<Login> {
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
-                child: EarlyCareProgressBar(
+                child: const EarlyCareProgressBar(
                   value: (1 / 6) * 2,
                   titleLeft: Text(
                     "titleLeft",
@@ -421,26 +435,49 @@ class _Login extends State<Login> {
               Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: const EarlyCareTextFieldLine(
-                  //label: "asd",
-                  //labelSize: 50,
-                  //labelColor: ColorInfo.mainColor,
                   prefix: Text('asdasdasd'),
                   prefixWidth: 100,
                   hint: "asdasd",
                   fontSize: 30,
                   suffix: Text('asdasd'),
-
                   //isUnderline: false,
                 ),
               ),
 
-              GestureDetector(
-                onTap: () => callDialog1(),
-                child: Container(
-                  color: Colors.blue,
-                  width: 100,
-                  height: 50,
-                  child: const Text("dialogConfirm"),
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: const EarlyCareTextFieldLine(
+                  width: 130,
+                  fontSize: 32,
+                  isUnderline: false,
+                  textInputAlign: TextAlign.center,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: EarlyCareTextFieldLine(
+                  fontSize: 32,
+                  textInputAlign: TextAlign.center,
+                  textfieldPadding: const EdgeInsets.symmetric(horizontal: 50),
+                  enableBorderColor: Colors.grey,
+                  focusBorderColor: ColorInfo.mainColor,
+                  hint: '닉네임',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: GestureDetector(
+                  onTap: () => callDialog1(),
+                  child: Container(
+                    color: Colors.blue,
+                    width: 100,
+                    height: 50,
+                    child: const Text("dialogConfirm"),
+                  ),
                 ),
               ),
 

@@ -2,7 +2,8 @@ import 'package:early_care/component/color_info.dart';
 import 'package:flutter/material.dart';
 
 class EarlyCareTextFieldLine extends StatelessWidget {
-  final EdgeInsets? padding;
+  final EdgeInsets? textPadding;
+  final EdgeInsets? textfieldPadding;
   final String? hint;
   final String? label;
   final Widget? prefix;
@@ -21,6 +22,7 @@ class EarlyCareTextFieldLine extends StatelessWidget {
   final Color? labelColor;
   final Color? enableBorderColor;
   final Color? focusBorderColor;
+  final Color? cursorColor;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final TextInputType? textInputType;
@@ -37,7 +39,8 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     this.width,
     this.fontWeight,
     this.labelSize,
-    this.padding,
+    this.textPadding,
+    this.textfieldPadding,
     this.fontSize = 10,
     this.prefixWidth,
     this.prefixHeight,
@@ -50,6 +53,7 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     this.labelColor,
     this.enableBorderColor,
     this.focusBorderColor,
+    this.cursorColor,
     this.controller,
     this.focusNode,
     this.textInputAlign,
@@ -59,20 +63,23 @@ class EarlyCareTextFieldLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: textfieldPadding ?? EdgeInsets.zero,
       width: width ?? double.infinity,
       child: TextFormField(
         textAlignVertical: TextAlignVertical.center,
         textAlign: textInputAlign ?? TextAlign.left,
         controller: controller,
+        cursorColor: cursorColor ?? Colors.black,
         style: TextStyle(
           color: textColor ?? Colors.black,
           fontSize: fontSize,
+          fontWeight: fontWeight,
           textBaseline: TextBaseline.alphabetic,
         ),
         decoration: InputDecoration(
           isDense: true,
-          contentPadding: padding,
+          contentPadding: textPadding ?? const EdgeInsets.symmetric(vertical: 15),
           prefixIcon: prefixLine(),
           prefixIconConstraints: const BoxConstraints(
             minWidth: 0,
@@ -141,11 +148,12 @@ class EarlyCareTextFieldLine extends StatelessWidget {
       return InputBorder.none;
     } else if (type == 1) {
       return UnderlineInputBorder(
-        borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
+        borderSide: BorderSide(color: enableBorderColor ?? Colors.grey, width: 5),
+
       );
     }
     return UnderlineInputBorder(
-      borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
+      borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor, width: 5),
     );
   }
 }

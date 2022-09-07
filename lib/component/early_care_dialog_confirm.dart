@@ -19,13 +19,14 @@ class EarlyCareDialogConfirm extends StatelessWidget {
   final EdgeInsets? titlePadding;
   final EdgeInsets? contentPadding;
   final EdgeInsets? actionPadding;
-  final bool? isHorizontal;
-  final bool? isConfirm;
+  bool isHorizontal;
+  bool isShowCancel;
+  final bool? isBorder;
   final Widget? widget;
   final Function()? correctOnPressed;
   final Function()? cancelOnPressed;
 
-  const EarlyCareDialogConfirm({
+  EarlyCareDialogConfirm({
     super.key,
     this.title,
     required this.information,
@@ -43,19 +44,26 @@ class EarlyCareDialogConfirm extends StatelessWidget {
     this.titlePadding,
     this.contentPadding,
     this.actionPadding,
-    this.isHorizontal,
-    this.isConfirm = true,
+    this.isHorizontal = false,
+    this.isShowCancel = false,
+    this.isBorder,
     this.widget,
     this.correctOnPressed,
     this.cancelOnPressed,
   });
+  //     : assert(!(!isShowCancel && isHorizontal), 'error'){
+  //   isHorizontal = false;
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       titlePadding: title == null ? EdgeInsets.zero : const EdgeInsets.only(top: 40, left: 45, right: 45),
       contentPadding: contentPaddingInfo(),
-      actionsPadding: actionPadding ?? const EdgeInsets.only(bottom: 40, left: 45, right: 45),
+      //actionsPadding: actionPadding ?? const EdgeInsets.only(top: 20, bottom: 30, left: 25, right: 25),
+      actionsPadding: actionPaddingInfo(),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
@@ -66,13 +74,10 @@ class EarlyCareDialogConfirm extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: titleFontSize,
-                color: titleColor,
+                fontWeight: FontWeight.bold,
+                color: titleColor ?? Colors.black,
               ),
             ),
-      // content: ConstrainedBox(
-      //   constraints: const BoxConstraints(
-      //     maxHeight: 70,
-      //   ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -86,7 +91,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
                 information,
                 style: TextStyle(
                   fontSize: informationFontSize,
-                  color: informationColor,
+                  color: informationColor ?? Colors.grey,
                 ),
               ),
             ),
@@ -115,11 +120,20 @@ class EarlyCareDialogConfirm extends StatelessWidget {
     } else if (title == null) {
       return const EdgeInsets.only(top: 40, bottom: 30, left: 45, right: 45);
     }
-    return const EdgeInsets.only(top: 20, bottom: 30, left: 45, right: 45);
+    return const EdgeInsets.only(top: 15, bottom: 10, left: 45, right: 45);
+  }
+
+  EdgeInsets actionPaddingInfo() {
+    if (actionPadding != null) {
+      return actionPadding!;
+    } else if (isShowCancel && isHorizontal == true) {
+      return const EdgeInsets.only(bottom: 30, left: 25, right: 25);
+    }
+    return const EdgeInsets.only(top: 30, bottom: 30, left: 25, right: 25);
   }
 
   Widget buttonsInfo() {
-    if (isConfirm == true) {
+    if (!isShowCancel) {
       //single confirm button
       return SizedBox(
         width: double.infinity,
@@ -133,27 +147,25 @@ class EarlyCareDialogConfirm extends StatelessWidget {
         ),
       );
     }
-    if (isHorizontal == true) {
+    if (isShowCancel && isHorizontal == true) {
       //horizontal confirm button and cancel button
       return Row(
         children: [
           Expanded(
-            flex: 1,
             child: EarlyCareButton(
               text: cancel ?? '취소',
-              textColor: cancelColor,
+              textColor: cancelColor ?? Colors.black,
               fontSize: buttonFontSize,
-              backgroundColor: cancelBackgroundColor,
+              backgroundColor: cancelBackgroundColor ?? Colors.white,
               onPressed: () => cancelOnPressed,
             ),
           ),
           Expanded(
-            flex: 1,
             child: EarlyCareButton(
               text: correct ?? '확인',
-              textColor: correctColor,
+              textColor: correctColor ?? Colors.red,
               fontSize: buttonFontSize,
-              backgroundColor: correctBackgroundColor,
+              backgroundColor: correctBackgroundColor ?? Colors.white,
               onPressed: () => correctOnPressed,
             ),
           ),
@@ -167,22 +179,25 @@ class EarlyCareDialogConfirm extends StatelessWidget {
           width: double.infinity,
           child: EarlyCareButton(
             width: double.infinity,
-            text: cancel ?? '취소',
-            textColor: cancelColor,
+            text: correct ?? '확인',
+            textColor: correctColor ?? Colors.white,
             fontSize: buttonFontSize,
-            backgroundColor: cancelBackgroundColor,
-            onPressed: cancelOnPressed,
+            backgroundColor: correctBackgroundColor ?? Colors.black,
+            onPressed: correctOnPressed,
           ),
         ),
-        SizedBox(
+        Container(
+          margin: const EdgeInsets.only(top: 10),
           width: double.infinity,
           child: EarlyCareButton(
             width: double.infinity,
-            text: correct ?? '확인',
-            textColor: correctColor,
+            text: cancel ?? '취소',
+            textColor: cancelColor ?? Colors.grey,
             fontSize: buttonFontSize,
-            backgroundColor: correctBackgroundColor,
-            onPressed: correctOnPressed,
+            backgroundColor: cancelBackgroundColor ?? Colors.white,
+            isBorder: true,
+            borderColor: Colors.grey,
+            onPressed: cancelOnPressed,
           ),
         ),
       ],
