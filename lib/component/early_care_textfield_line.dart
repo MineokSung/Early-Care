@@ -57,56 +57,6 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     this.widget,
   });
 
-  Widget prefixLine() {
-    if (prefix == null) {
-      return const SizedBox.shrink();
-    }
-    return Align(
-      alignment: Alignment.centerLeft,
-      widthFactor: 1.0,
-      heightFactor: 1.0,
-      child: SizedBox(
-        width: prefixWidth,
-        height: prefixHeight,
-        child: Container(
-          color: Colors.blue,
-          child: prefix!,
-        ),
-      ),
-    );
-  }
-
-  Widget suffixLine() {
-    if (suffix == null) {
-      return const SizedBox.shrink();
-    }
-    return Align(
-      alignment: Alignment.centerRight,
-      widthFactor: 1.0,
-      heightFactor: 1.0,
-      child: SizedBox(
-        width: suffixWidth,
-        height: suffixHeight,
-        child: suffix!,
-      ),
-    );
-  }
-
-  InputBorder underlineInfo(
-      int type) //1 = enableBorderline, 2 = focusBorderline
-  {
-    if (isUnderline == false) {
-      return InputBorder.none;
-    } else if (type == 1) {
-      return UnderlineInputBorder(
-        borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
-      );
-    }
-    return UnderlineInputBorder(
-      borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -147,6 +97,55 @@ class EarlyCareTextFieldLine extends StatelessWidget {
         keyboardType: textInputType ?? TextInputType.text,
         focusNode: focusNode,
       ),
+    );
+  }
+
+  Widget prefixLine() {
+    if (prefix == null) {
+      return const SizedBox.shrink();
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      widthFactor: 1.0,
+      heightFactor: 1.0,
+      child: SizedBox(
+        width: prefixWidth,
+        height: prefixHeight,
+        child: Container(
+          color: Colors.blue,
+          child: prefix!,
+        ),
+      ),
+    );
+  }
+
+  Widget suffixLine() {
+    if (suffix == null) {
+      return const SizedBox.shrink();
+    }
+    return Align(
+      alignment: Alignment.centerRight,
+      widthFactor: 1.0,
+      heightFactor: 1.0,
+      child: SizedBox(
+        width: suffixWidth,
+        height: suffixHeight,
+        child: suffix!,
+      ),
+    );
+  }
+
+  InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
+  {
+    if (isUnderline == false) {
+      return InputBorder.none;
+    } else if (type == 1) {
+      return UnderlineInputBorder(
+        borderSide: BorderSide(color: enableBorderColor ?? Colors.grey),
+      );
+    }
+    return UnderlineInputBorder(
+      borderSide: BorderSide(color: focusBorderColor ?? ColorInfo.mainColor),
     );
   }
 }

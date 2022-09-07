@@ -1,3 +1,8 @@
+import 'dart:collection';
+import 'dart:core';
+
+import 'package:collection/collection.dart';
+import 'package:early_care/component/early_care_bottom_sheet.dart';
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
@@ -25,6 +30,20 @@ class _Login extends State<Login> {
 
   String testCallback = 'false';
 
+  List<MobileCarrier> mobileCarriers = [
+    MobileCarrier(id: 1, name: 'SKT'),
+    MobileCarrier(id: 2, name: 'KT'),
+    MobileCarrier(id: 3, name: 'LG U+'),
+    MobileCarrier(id: 4, name: 'SKT 알뜰폰'),
+    MobileCarrier(id: 5, name: 'KT 알뜰폰'),
+    MobileCarrier(id: 6, name: 'LG U+ 알뜰폰'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -43,10 +62,8 @@ class _Login extends State<Login> {
     setState(() {});
   }
 
-
   Widget activatedButton() {
     if (testCallback == 'false') {
-
       return EarlyCareButton(
         text: '확인' ?? '취소',
         onPressed: buttonActivated,
@@ -89,6 +106,69 @@ class _Login extends State<Login> {
             body: 'asdasd',
           );
         });
+  }
+
+  Widget selectButton(int index) {
+    MobileCarrier mobileCarrier = mobileCarriers[index];
+    return EarlyCareButton(
+      width: double.infinity,
+      height: 50,
+      backgroundColor: mobileCarrier.isSelected == false ? Colors.white : ColorInfo.mainColor,
+      textColor: mobileCarrier.isSelected == false ? Colors.black : Colors.white,
+      isBorder: true,
+      fontWeight: FontWeight.normal,
+      text: mobileCarrier.name,
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+      onPressed: () {
+        setState(() {
+          MobileCarrier? beforeSelected = mobileCarriers.firstWhereOrNull((o) => o.isSelected);
+          if (beforeSelected != null) {
+            beforeSelected.isSelected = false;
+          }
+          mobileCarrier.isSelected = true;
+          Navigator.pop(context);
+        });
+      },
+    );
+  }
+
+  void _bottomSheet1() {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return EarlyCareBottomSheet(
+            isCancelButton: true,
+            title: const Text(
+              '통신사를 선택해주세요',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(mobileCarriers.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: selectButton(index),
+                  );
+                }),
+              ),
+            ),
+          );
+        }).whenComplete(() {
+      print('close bottom sheet');
+    });
   }
 
   void deleteText() {
@@ -419,7 +499,6 @@ class _Login extends State<Login> {
                     });
 
                     print(value);
-
                   },
                   controller: textController1,
                 ),
@@ -432,10 +511,28 @@ class _Login extends State<Login> {
                   ),
                 ],
               ),
+
+              GestureDetector(
+                onTap: () => _bottomSheet1(),
+                child: Container(
+                  color: Colors.greenAccent,
+                  width: 150,
+                  height: 50,
+                  child: const Text("bottomSheet"),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+class MobileCarrier {
+  int id;
+  String name;
+  bool isSelected;
+
+  MobileCarrier({required this.id, required this.name, this.isSelected = false});
 }

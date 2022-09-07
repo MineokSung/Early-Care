@@ -67,6 +67,53 @@ class EarlyCareTextFieldBox extends StatelessWidget {
     this.onChanged,
   });
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: boxColor ?? Colors.grey,
+        borderRadius: BorderRadius.circular(boxBorderRadius ?? 10),
+      ),
+      child: TextFormField(
+        textAlignVertical: TextAlignVertical.center,
+        textAlign: textInputAlign ?? TextAlign.left,
+        controller: controller,
+        maxLines: maxLine ?? 1,
+        onChanged: (String value) {
+          if (onChanged != null) {
+            onChanged!(value);
+          }
+        },
+        style: TextStyle(
+          color: textColor ?? Colors.black,
+          fontSize: fontSize,
+          textBaseline: TextBaseline.alphabetic,
+        ),
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: padding,
+          prefixIcon: prefixLine(),
+          prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          suffixIcon: suffixLine(),
+          suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+          hintText: hint,
+          hintStyle: TextStyle(
+            color: hintColor,
+            fontSize: fontSize,
+          ),
+          labelText: label,
+          labelStyle: TextStyle(color: labelColor, fontSize: labelSize),
+          border: InputBorder.none,
+        ),
+        obscureText: isSecret ?? false,
+        keyboardType: textInputType ?? TextInputType.text,
+        focusNode: focusNode,
+      ),
+    );
+  }
+
   Widget prefixLine() {
     if (prefix == null) {
       return const SizedBox.shrink();
@@ -108,58 +155,8 @@ class EarlyCareTextFieldBox extends StatelessWidget {
           //     suffixTouch!();
           //   }
           // },
-          onTap: ()=> suffixOnTap != null ? suffixOnTap!() : null,
+          onTap: () => suffixOnTap != null ? suffixOnTap!() : null,
         ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: boxColor ?? Colors.grey,
-        borderRadius: BorderRadius.circular(boxBorderRadius ?? 10),
-      ),
-      child: TextFormField(
-        textAlignVertical: TextAlignVertical.center,
-        textAlign: textInputAlign ?? TextAlign.left,
-        controller: controller,
-        maxLines: maxLine ?? 1,
-        onChanged: (String value){
-          if(onChanged != null){
-            onChanged!(value);
-          }
-
-        },
-        style: TextStyle(
-          color: textColor ?? Colors.black,
-          fontSize: fontSize,
-          textBaseline: TextBaseline.alphabetic,
-        ),
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding: padding,
-          prefixIcon: prefixLine(),
-          prefixIconConstraints:
-              const BoxConstraints(minWidth: 0, minHeight: 0),
-          suffixIcon: suffixLine(),
-          suffixIconConstraints:
-              const BoxConstraints(minWidth: 0, minHeight: 0),
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: hintColor,
-            fontSize: fontSize,
-          ),
-          labelText: label,
-          labelStyle: TextStyle(color: labelColor, fontSize: labelSize),
-          border: InputBorder.none,
-        ),
-        obscureText: isSecret ?? false,
-        keyboardType: textInputType ?? TextInputType.text,
-        focusNode: focusNode,
       ),
     );
   }

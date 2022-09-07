@@ -8,8 +8,14 @@ class EarlyCareButton extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? backgroundColor;
+  final Color? clickBackgroundColor;
+  final Color? clickTextColor;
   final Color? textColor;
+  final Color? borderColor;
+  final Alignment? alignment;
   final bool? isActivated;
+  final bool? isBorder;
+  final FontWeight? fontWeight;
   final double? radius;
   final Function()? onPressed;
 
@@ -21,8 +27,14 @@ class EarlyCareButton extends StatelessWidget {
     this.width,
     this.height,
     this.backgroundColor,
+    this.clickBackgroundColor,
+    this.clickTextColor,
     this.textColor,
+    this.borderColor,
+    this.alignment,
     this.isActivated,
+    this.isBorder = false,
+    this.fontWeight,
     this.radius,
     this.onPressed,
   });
@@ -34,23 +46,34 @@ class EarlyCareButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: padding ?? const EdgeInsets.symmetric(vertical: 18),
+          elevation: 0,
+          padding: padding ??
+              const EdgeInsets.symmetric(
+                vertical: 18,
+              ),
           shape: RoundedRectangleBorder(
+            side: isBorder == false ? BorderSide.none : BorderSide(
+                    color: borderColor ?? Colors.black,
+                  ),
             borderRadius: BorderRadius.circular(radius ?? 16),
           ),
-          backgroundColor: backgroundColor ?? ColorInfo.mainColor.withOpacity(0.6),
+          backgroundColor: backgroundColor ?? ColorInfo.mainColor,
         ),
         onPressed: () {
           if (onPressed != null) {
             onPressed!(); //() : 함수 실행의미
+
           }
         },
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor ?? ColorInfo.white,
-            fontSize: fontSize ?? 20,
-            fontWeight: FontWeight.bold,
+        child: Align(
+          alignment: alignment ?? Alignment.center,
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor ?? ColorInfo.white,
+              fontSize: fontSize ?? 20,
+              fontWeight: fontWeight ?? FontWeight.bold,
+            ),
           ),
         ),
       ),

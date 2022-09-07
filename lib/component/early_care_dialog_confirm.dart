@@ -50,6 +50,57 @@ class EarlyCareDialogConfirm extends StatelessWidget {
     this.cancelOnPressed,
   });
 
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      titlePadding: title == null ? EdgeInsets.zero : const EdgeInsets.only(top: 40, left: 45, right: 45),
+      contentPadding: contentPaddingInfo(),
+      actionsPadding: actionPadding ?? const EdgeInsets.only(bottom: 40, left: 45, right: 45),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      title: title == null
+          ? null
+          : Text(
+              title ?? '',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: titleFontSize,
+                color: titleColor,
+              ),
+            ),
+      // content: ConstrainedBox(
+      //   constraints: const BoxConstraints(
+      //     maxHeight: 70,
+      //   ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 300,
+              minHeight: 10,
+            ),
+            child: SingleChildScrollView(
+              child: Text(
+                information,
+                style: TextStyle(
+                  fontSize: informationFontSize,
+                  color: informationColor,
+                ),
+              ),
+            ),
+          ),
+          inputWidget(),
+        ],
+      ),
+
+      actions: <Widget>[
+        buttonsInfo(),
+      ],
+    );
+  }
+
   Widget inputWidget() {
     if (widget != null) {
       return widget!;
@@ -134,58 +185,6 @@ class EarlyCareDialogConfirm extends StatelessWidget {
             onPressed: correctOnPressed,
           ),
         ),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      titlePadding: title == null
-          ? EdgeInsets.zero
-          : const EdgeInsets.only(top: 40, left: 45, right: 45),
-      contentPadding: contentPaddingInfo(),
-      actionsPadding: actionPadding ??
-          const EdgeInsets.only(bottom: 40, left: 45, right: 45),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      title: title == null
-          ? null
-          : Text(
-              title ?? '',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: titleFontSize,
-                color: titleColor,
-              ),
-            ),
-      // content: ConstrainedBox(
-      //   constraints: const BoxConstraints(
-      //     maxHeight: 70,
-      //   ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 300,
-                minHeight: 10,
-              ),
-              child: SingleChildScrollView(
-                child: Text(
-                  information,
-                  style: TextStyle(
-                    fontSize: informationFontSize,
-                    color: informationColor,
-                  ),
-                ),
-              ),
-            ),
-            inputWidget(),
-          ],
-        ),
-
-      actions: <Widget>[
-        buttonsInfo(),
       ],
     );
   }

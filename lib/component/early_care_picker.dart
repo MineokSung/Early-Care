@@ -48,6 +48,11 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
     super.initState();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return pickerDirection();
+  }
+
   Widget selectLine() {
     if (widget.isHorizontal == true) {
       return Row(
@@ -61,7 +66,7 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
             child: Container(
               width: 28,
               height: 20,
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               child: SvgPicture.asset(
                 //"${Paths.imagePath}picker_horizontal_bottom.svg",
                 Assets.imagesPickerHorizontalTop,
@@ -75,13 +80,10 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
             child: Container(
               width: 42,
               height: 30,
-              margin: EdgeInsets.only(bottom: 30),
+              margin: const EdgeInsets.only(bottom: 30),
               child: SvgPicture.asset(
-                  //"${Paths.imagePath}picker_horizontal_bottom.svg",
                   Assets.imagesPickerHorizontalBottom
-                  //"assets/images/picker_horizontal_bottom.svg",
-
-                  ),
+              ),
               //color: ColorInfo.mainColor,
             ),
           ),
@@ -151,10 +153,5 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
     return Center(
       child: _picker(),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return pickerDirection();
   }
 }

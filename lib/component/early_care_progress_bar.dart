@@ -31,22 +31,6 @@ class EarlyCareProgressBar extends StatefulWidget {
 }
 
 class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
-  Widget titleInfo() {
-    if (widget.titleLeft != null) {
-      return widget.titleLeft!;
-    }
-
-    return SizedBox();
-  }
-
-  Widget valueInfo() {
-    if (widget.titleRight != null) {
-      return widget.titleRight!;
-    }
-
-    return SizedBox();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -63,8 +47,7 @@ class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
             ],
           ),
           ClipRRect(
-            borderRadius:
-            BorderRadius.all(Radius.circular(widget.borderRadius ?? 0)),
+            borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius ?? 0)),
             child: LinearProgressIndicator(
               value: widget.value ?? 0,
               minHeight: widget.minHeight ?? 5,
@@ -77,4 +60,19 @@ class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
     );
   }
 
+  Widget titleInfo() {
+    if (widget.titleLeft != null) {
+      return widget.titleLeft!;
+    }
+
+    return SizedBox();
+  }
+
+  Widget valueInfo() {
+    if (widget.titleRight != null) {
+      return widget.titleRight!;
+    }
+
+    return SizedBox();
+  }
 }

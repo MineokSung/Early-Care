@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String imagesIconCancel = 'assets/images/icon_cancel.svg';
   static const String imagesPickerHorizontalBottom = 'assets/images/picker_horizontal_bottom.svg';
   static const String imagesPickerHorizontalTop = 'assets/images/picker_horizontal_top.svg';
 
