@@ -53,6 +53,18 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
     return pickerDirection();
   }
 
+  Widget pickerDirection() {
+    if (widget.isHorizontal == true) {
+      return RotatedBox(
+        quarterTurns: 3,
+        child: _picker(),
+      );
+    }
+    return Center(
+      child: _picker(),
+    );
+  }
+
   Widget selectLine() {
     if (widget.isHorizontal == true) {
       return Row(
@@ -139,19 +151,6 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
           ],
         );
       },
-    );
-  }
-
-  Widget pickerDirection() {
-    if (widget.isHorizontal == true) {
-      return RotatedBox(
-        quarterTurns: 3,
-        child: _picker(),
-      );
-    }
-
-    return Center(
-      child: _picker(),
     );
   }
 }

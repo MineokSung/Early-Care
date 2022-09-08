@@ -1,6 +1,4 @@
-import 'dart:collection';
 import 'dart:core';
-
 import 'package:collection/collection.dart';
 import 'package:early_care/component/early_care_bottom_sheet.dart';
 import 'package:early_care/component/early_care_dialog_confirm.dart';
@@ -12,6 +10,7 @@ import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:early_care/component/test.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Login extends StatefulWidget {
   TextPosition textPosition = const TextPosition(offset: 10);
@@ -39,9 +38,76 @@ class _Login extends State<Login> {
     MobileCarrier(id: 6, name: 'LG U+ 알뜰폰'),
   ];
 
+  DateTime nowInfo = DateTime.now();
+  late DateTime previousInfo;
+  late DateTime nextInfo;
+  int currentDateIndex = 0;
+  int currentPage = 0;
+
+  List<String> datesPrevious = [];
+  List<String> datesNow = [];
+  List<String> datesNext = [];
+
   @override
   void initState() {
     super.initState();
+
+    previousInfo = DateTime(nowInfo.year, nowInfo.month, nowInfo.day - (7 + nowInfo.weekday));
+    nextInfo = DateTime(nowInfo.year, nowInfo.month, nowInfo.day + (7 - nowInfo.weekday));
+    currentDateIndex = nowInfo.weekday;
+    currentPage = 0;
+
+    datesPrevious = [
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 7))), //sun
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 8))), //mon
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 9))), //tue
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 10))), //wed
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 11))), //thu
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 12))), //fri
+      DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 13))), //sat
+    ];
+
+    datesNow = [
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 0))), //sun
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 1))), //mon
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 2))), //tue
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 3))), //wed
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 4))), //thu
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 5))), //fri
+      DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 6))), //sat
+    ];
+
+    datesNext = [
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 7))), //sun
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 8))), //mon
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 9))), //tue
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 10))), //wed
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 11))), //thu
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 12))), //fri
+      DateFormat("d").format(nextInfo.subtract(Duration(days: nextInfo.weekday - 13))), //sat
+    ];
+  }
+
+  List<DateInfo> setDatesNext(DateTime current, bool isNext) {
+    DateTime setDateInfo;
+    if(isNext){
+      setDateInfo = DateTime(current.year, current.month, current.day + (7 - current.weekday));
+    }
+    else{
+      setDateInfo = DateTime(nowInfo.year, nowInfo.month, nowInfo.day - (7 + nowInfo.weekday));
+    }
+
+    List<DateInfo> nextDatesInfo = [
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 7)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 7))),), //sun
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 8)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 8))),), //mon
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 9)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 9))),),  //tue
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 10)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 10))),),  //wed
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 11)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 1))),),  //thu
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 12)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 12))),),  //fri
+      DateInfo(dateTime: setDateInfo.subtract(Duration(days: setDateInfo.weekday - 13)), date: DateFormat("d").format(setDateInfo.subtract(Duration(days: setDateInfo.weekday - 13))),),  //sat
+    ];
+
+    return nextDatesInfo;
   }
 
   @override
@@ -60,6 +126,138 @@ class _Login extends State<Login> {
       print("non-empty");
     }
     setState(() {});
+  }
+
+  Widget getDate(BuildContext context) {
+    DateTime previousInfo = DateTime(nowInfo.year, nowInfo.month, nowInfo.day - (7 + nowInfo.weekday));
+    DateTime nextInfo = DateTime(nowInfo.year, nowInfo.month, nowInfo.day + (7 - nowInfo.weekday));
+    int currentDateIndex = nowInfo.weekday;
+    int currentPage = 0;
+
+    List<DateInfo> datesPrevious = [
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 7)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 7))),), //sun
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 8)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 8))),), //mon
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 9)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 9))),),  //tue
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 10)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 10))),),  //wed
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 11)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 1))),),  //thu
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 12)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 12))),),  //fri
+      DateInfo(dateTime: previousInfo.subtract(Duration(days: previousInfo.weekday - 13)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 13))),),  //sat
+    ];
+
+    List<DateInfo> datesNow = [
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 0)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 7))),), //sun
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 1)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 8))),), //mon
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 2)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 9))),), //tue
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 3)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 7))),), //wed
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 4)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 8))),), //thu
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 5)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 9))),), //fri
+      DateInfo(dateTime: nowInfo.subtract(Duration(days: nowInfo.weekday - 6)), date: DateFormat("d").format(nowInfo.subtract(Duration(days: nowInfo.weekday - 9))),), //sat
+    ];
+
+    List<DateInfo> datesNext = [
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 7)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 7))),), //sun
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 8)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 8))),), //mon
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 9)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 9))),),  //tue
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 10)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 10))),),  //wed
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 11)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 1))),),  //thu
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 12)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 12))),),  //fri
+      DateInfo(dateTime: nextInfo.subtract(Duration(days: nextInfo.weekday - 13)), date: DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 13))),),  //sat
+    ];
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('<'),
+            ),
+            Text(DateFormat("M").format(nowInfo)),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('>'),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: const [
+            Text("Sun"),
+            Text("Mon"),
+            Text("Tue"),
+            Text("Wed"),
+            Text("Thu"),
+            Text("Fri"),
+            Text("Sat"),
+          ],
+        ),
+
+        Container(
+          height: 50,
+          child: PageView.builder(
+            //itemCount: null,
+            //controller: PageController(initialPage: ),
+            allowImplicitScrolling: true,
+            onPageChanged: (index) {
+              if (index >= currentPage) {//->
+                //test
+                // List<String> prev = [
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 7))), //sun
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 8))), //mon
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 9))), //tue
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 10))), //wed
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 11))), //thu
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 12))), //fri
+                //   DateFormat("d").format(previousInfo.subtract(Duration(days: previousInfo.weekday - 13))), //sat
+                // ];
+                //
+                // List<String> curr = [
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 0))), //sun
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 1))), //mon
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 2))), //tue
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 3))), //wed
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 4))), //thu
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 5))), //fri
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 6))), //sat
+                // ];
+                //
+                // List<String> nex = [
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 7))), //sun
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 8))), //mon
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 9))), //tue
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 10))), //wed
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 11))), //thu
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 12))), //fri
+                //   DateFormat("d").format(datesNow[currentDateIndex].subtract(Duration(days: datesNow[currentDateIndex].weekday - 13))), //sat
+                // ];
+                datesPrevious = datesNow;
+                datesNow = datesNext;
+                datesNext = setDatesNext(datesNow[currentDateIndex].dateTime, true);
+              }
+
+              currentPage = index;
+              print('pageChange : $index');
+            },
+            itemBuilder: (context, index) {
+              print('$index');
+              return Text('itemBuilder : {$index}');
+            },
+          ),
+        ),
+        // Container(
+        //   height: 100,
+        //   child:
+        //     ListView.builder(shrinkWrap: true,
+        //         itemCount: dates.length,
+        //         scrollDirection: Axis.horizontal,
+        //         itemBuilder: (BuildContext context, int index) {
+        //           return Text(dates[index]);
+        //         }),
+        //
+        // ),
+      ],
+    );
   }
 
   // BorderSide copyWith({
@@ -90,7 +288,7 @@ class _Login extends State<Login> {
 
   void callDialog1() {
     showDialog(
-        //barrierDismissible: true,
+      //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return EarlyCareDialogConfirm(
@@ -112,7 +310,7 @@ class _Login extends State<Login> {
 
   void callDialog3() {
     showDialog(
-        //barrierDismissible: true,
+      //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return const GGAlertDialog(
@@ -190,7 +388,7 @@ class _Login extends State<Login> {
 
   void callDialog2() {
     showDialog(
-        //barrierDismissible: true,
+      //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
           return EarlyCareDialogConfirm(
@@ -246,7 +444,7 @@ class _Login extends State<Login> {
     print(testText);
   }
 
-  BoxConstraints PrefixBoxConstraints() {
+  BoxConstraints prefixBoxConstraints() {
     if (text == '') {
       return const BoxConstraints(minHeight: 0, minWidth: 0);
     }
@@ -558,6 +756,37 @@ class _Login extends State<Login> {
                   child: const Text("bottomSheet"),
                 ),
               ),
+
+              Container(
+                child: getDate(context),
+                // child: Column(
+                //   children: [
+                //     Row(
+                //       children: [
+                //         ElevatedButton(
+                //           child: Text('start'),
+                //           onPressed: () {
+                //
+                //           },
+                //
+                //         ),
+                //         Text('month'),
+                //         ElevatedButton(
+                //           child: Text('end'),
+                //           onPressed: () {
+                //
+                //           },
+                //
+                //         ),
+                //       ],
+                //     ),
+                //
+                //     Row(
+                //
+                //     ),
+                //   ],
+                // ),
+              ),
             ],
           ),
         ),
@@ -572,4 +801,11 @@ class MobileCarrier {
   bool isSelected;
 
   MobileCarrier({required this.id, required this.name, this.isSelected = false});
+}
+
+class DateInfo{
+  DateTime dateTime;
+  String date;
+
+  DateInfo({required this.dateTime, required this.date});
 }
