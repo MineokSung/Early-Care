@@ -330,6 +330,8 @@ class _Login2 extends State<Login2> {
     if (testCallback == 'false') {
       return EarlyCareButton(
         text: '확인' ?? '취소',
+        isPlus: true,
+        mainAxisAlignment: MainAxisAlignment.center,
         onPressed: buttonActivated,
       );
     }
@@ -382,7 +384,7 @@ class _Login2 extends State<Login2> {
       isBorder: true,
       fontWeight: FontWeight.normal,
       text: mobileCarrier.name,
-      alignment: Alignment.centerLeft,
+      mainAxisAlignment: MainAxisAlignment.start,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
       onPressed: () {
         setState(() {
@@ -532,6 +534,7 @@ class _Login2 extends State<Login2> {
                     child: EarlyCareButton(
                       //width: 20,
                       text: '확인' ?? '취소',
+                      isPlus: true,
                       // textColor: Colors.blue,
                       // fontSize: 20,
                       // backgroundColor: Colors.cyan,

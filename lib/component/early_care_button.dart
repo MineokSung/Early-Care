@@ -1,5 +1,7 @@
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/generated/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class EarlyCareButton extends StatelessWidget {
   final EdgeInsets? padding;
@@ -12,9 +14,10 @@ class EarlyCareButton extends StatelessWidget {
   final Color? clickTextColor;
   final Color? textColor;
   final Color? borderColor;
-  final Alignment? alignment;
+  final MainAxisAlignment? mainAxisAlignment;
   final bool? isActivated;
   final bool? isBorder;
+  final bool? isPlus;
   final FontWeight? fontWeight;
   final double? radius;
   final Function()? onPressed;
@@ -31,9 +34,10 @@ class EarlyCareButton extends StatelessWidget {
     this.clickTextColor,
     this.textColor,
     this.borderColor,
-    this.alignment,
+    this.mainAxisAlignment,
     this.isActivated,
     this.isBorder = false,
+    this.isPlus = false,
     this.fontWeight,
     this.radius,
     this.onPressed,
@@ -49,10 +53,12 @@ class EarlyCareButton extends StatelessWidget {
           elevation: 0,
           padding: padding ??
               const EdgeInsets.symmetric(
-                vertical: 15,
+                vertical: 15,horizontal: 12
               ),
           shape: RoundedRectangleBorder(
-            side: isBorder == false ? BorderSide.none : BorderSide(
+            side: isBorder == false
+                ? BorderSide.none
+                : BorderSide(
                     color: borderColor ?? Colors.black,
                   ),
             borderRadius: BorderRadius.circular(radius ?? 16),
@@ -62,19 +68,26 @@ class EarlyCareButton extends StatelessWidget {
         onPressed: () {
           if (onPressed != null) {
             onPressed!(); //() : 함수 실행의미
-
           }
         },
-        child: Align(
-          alignment: alignment ?? Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor ?? ColorInfo.white,
-              fontSize: fontSize ?? 20,
-              fontWeight: fontWeight ?? FontWeight.bold,
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+          children: [
+            !isPlus! ? const SizedBox() : Container(
+              margin: const EdgeInsets.only(right: 10),
+              child: SvgPicture.asset(
+                Assets.imagesIconPlus,
+              ),
             ),
-          ),
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor ?? ColorInfo.white,
+                fontSize: fontSize ?? 20,
+                fontWeight: fontWeight ?? FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class EarlyCareTextFieldBox extends StatelessWidget {
   final EdgeInsets? padding;
+  final EdgeInsets? prefixPadding;
+  final EdgeInsets? suffixPadding;
   final String? hint;
   final String? label;
   final String? helperText;
@@ -47,6 +49,8 @@ class EarlyCareTextFieldBox extends StatelessWidget {
     this.labelSize,
     this.helperTextSize,
     this.padding,
+    this.prefixPadding,
+    this.suffixPadding,
     this.fontSize = 10,
     this.controller,
     this.boxBorderRadius,
@@ -110,7 +114,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 isDense: true,
-                contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 18,horizontal: 15),
+                contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 18,),
                 prefixIcon: prefix == null ? null : _prefixLine(),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 0,
@@ -168,7 +172,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
       widthFactor: 1.0,
       heightFactor: 1.0,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: prefixPadding ?? const EdgeInsets.only(left: 15),
         child: GestureDetector(
           child: prefix!,
           onTap: () {
@@ -190,7 +194,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
       widthFactor: 1.0,
       heightFactor: 1.0,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: suffixPadding ?? const EdgeInsets.only(right: 15),
         child: GestureDetector(
           child: suffix!,
           // onTap: () {
