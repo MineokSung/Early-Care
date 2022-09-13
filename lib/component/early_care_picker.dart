@@ -21,7 +21,7 @@ class EarlyCarePicker extends StatefulWidget {
   final List<dynamic> data;
   final Function(String) callback;
 
-  EarlyCarePicker({
+  const EarlyCarePicker({
     super.key,
     this.width,
     this.height,
