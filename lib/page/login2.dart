@@ -626,11 +626,18 @@ class _Login2 extends State<Login2> {
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
+                padding: EdgeInsets.symmetric(horizontal: 5),
                 child: EarlyCareTextFieldBox(
                   prefix: Text("prefixTouch"),
-                  prefixOnTap: testPrint,
-                  suffix: Icon(Icons.call),
-                  suffixOnTap: deleteText,
+                  //prefixOnTap: testPrint,
+                  //suffix: Icon(Icons.call),
+                  suffix: Text("suffix"),
+                  label: "asdasd",
+                  width: 300,
+                  helperText: "helper",
+                  boxBorderRadius: 5,boxColor: Colors.white,
+                  enableBorderColor: Colors.blue,
+                  //suffixOnTap: deleteText,
                   controller: textController1,
                 ),
               ),
@@ -686,11 +693,12 @@ class _Login2 extends State<Login2> {
               Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: const EarlyCareTextFieldLine(
-                  prefix: Text('asdasdasd'),
+                  //prefix: Text('asdasdasd'),
                   prefixWidth: 100,
                   hint: "asdasd",
                   fontSize: 30,
-                  suffix: Text('asdasd'),
+                  textPadding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  //suffix: Text('asdasd'),
                   //isUnderline: false,
                 ),
               ),
@@ -774,23 +782,24 @@ class _Login2 extends State<Login2> {
                 ),
               ),
 
-              Container(
-                margin: const EdgeInsets.only(top: 30),
-                child: EarlyCareTextFieldBox(
-                  prefix: Text("prefixTouch222"),
-                  prefixOnTap: testPrint,
-                  suffix: Icon(Icons.call),
-                  suffixOnTap: deleteText,
-                  onChanged: (value) {
-                    setState(() {
-                      testCallback = (value.length > 2).toString();
-                    });
-
-                    print(value);
-                  },
-                  controller: textController1,
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(top: 30),
+              //   child: EarlyCareTextFieldBox(
+              //     prefix: Text("prefixTouch222"),
+              //     prefixOnTap: testPrint,
+              //     suffix: Icon(Icons.call),
+              //     suffixOnTap: deleteText,
+              //     label: "label",
+              //     onChanged: (value) {
+              //       setState(() {
+              //         testCallback = (value.length > 2).toString();
+              //       });
+              //
+              //       print(value);
+              //     },
+              //     controller: textController1,
+              //   ),
+              // ),
 
               Row(
                 children: [

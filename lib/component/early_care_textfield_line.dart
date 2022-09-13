@@ -68,7 +68,7 @@ class EarlyCareTextFieldLine extends StatelessWidget {
       width: width ?? double.infinity,
       child: TextFormField(
         textAlignVertical: TextAlignVertical.center,
-        textAlign: textInputAlign ?? TextAlign.left,
+        textAlign: _textAlign(),
         controller: controller,
         cursorColor: cursorColor ?? Colors.black,
         style: TextStyle(
@@ -80,12 +80,12 @@ class EarlyCareTextFieldLine extends StatelessWidget {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: textPadding ?? const EdgeInsets.symmetric(vertical: 15),
-          prefixIcon: prefixLine(),
+          prefixIcon: prefix == null ? null : _prefixLine(),
           prefixIconConstraints: const BoxConstraints(
             minWidth: 0,
             minHeight: 0,
           ),
-          suffixIcon: suffixLine(),
+          suffixIcon: suffix == null ? null : _suffixLine(),
           suffixIconConstraints: const BoxConstraints(
             minWidth: 0,
             minHeight: 0,
@@ -96,9 +96,12 @@ class EarlyCareTextFieldLine extends StatelessWidget {
             fontSize: fontSize,
           ),
           labelText: label,
-          labelStyle: TextStyle(color: labelColor, fontSize: labelSize),
-          enabledBorder: underlineInfo(1),
-          focusedBorder: underlineInfo(2),
+          labelStyle: TextStyle(
+            color: labelColor,
+            fontSize: labelSize,
+          ),
+          enabledBorder: _underlineInfo(1),
+          focusedBorder: _underlineInfo(2),
         ),
         obscureText: isSecret ?? false,
         keyboardType: textInputType ?? TextInputType.text,
@@ -107,7 +110,17 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     );
   }
 
-  Widget prefixLine() {
+  TextAlign _textAlign(){
+    if(textInputAlign != null){
+      return textInputAlign!;
+    }
+    if(suffix == null && prefix == null){
+      return TextAlign.center;
+    }
+    return TextAlign.left;
+  }
+
+  Widget _prefixLine() {
     if (prefix == null) {
       return const SizedBox.shrink();
     }
@@ -126,7 +139,7 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     );
   }
 
-  Widget suffixLine() {
+  Widget _suffixLine() {
     if (suffix == null) {
       return const SizedBox.shrink();
     }
@@ -142,14 +155,13 @@ class EarlyCareTextFieldLine extends StatelessWidget {
     );
   }
 
-  InputBorder underlineInfo(int type) //1 = enableBorderline, 2 = focusBorderline
-  {
-    if (isUnderline == false) {
+  InputBorder _underlineInfo(int type) {
+    //1 = enableBorderline, 2 = focusBorderline
+    if (!isUnderline!) {
       return InputBorder.none;
     } else if (type == 1) {
       return UnderlineInputBorder(
         borderSide: BorderSide(color: enableBorderColor ?? Colors.grey, width: 5),
-
       );
     }
     return UnderlineInputBorder(
