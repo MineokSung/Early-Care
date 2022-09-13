@@ -2,8 +2,9 @@
 class Assets {
   Assets._();
 
-  static const String imagesIcRight = 'assets/images/ic_right.svg';
   static const String imagesIconCancel = 'assets/images/icon_cancel.svg';
+  static const String imagesIconEarlyCareGreen = 'assets/images/icon_early_care_green.svg';
+  static const String imagesIconEarlyCareWhite = 'assets/images/icon_early_care_white.svg';
   static const String imagesIconLeft = 'assets/images/icon_left.svg';
   static const String imagesIconRight = 'assets/images/icon_right.svg';
   static const String imagesPickerHorizontalBottom = 'assets/images/picker_horizontal_bottom.svg';

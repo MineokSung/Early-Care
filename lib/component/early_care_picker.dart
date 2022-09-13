@@ -1,7 +1,7 @@
 import 'package:early_care/component/color_info.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/generated/assets.dart';
-import 'package:early_care/page/login.dart';
+import 'package:early_care/page/login2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -1,7 +1,9 @@
 
+import 'package:early_care/page/login.dart';
+import 'package:early_care/page/splash.dart';
 import 'package:flutter/material.dart';
 
-import 'page/login.dart';
+import 'page/login2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: Login2(),
+      routes: {
+        'login': (context)=>const Login(),
+      },
     );
   }
 }
