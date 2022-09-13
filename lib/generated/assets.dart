@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String imagesIconCancel = 'assets/images/icon_cancel.svg';
+  static const String imagesIconCart = 'assets/images/icon_cart.svg';
   static const String imagesIconEarlyCareGreen = 'assets/images/icon_early_care_green.svg';
   static const String imagesIconEarlyCareWhite = 'assets/images/icon_early_care_white.svg';
   static const String imagesIconLeft = 'assets/images/icon_left.svg';

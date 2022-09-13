@@ -4,6 +4,7 @@ import 'package:early_care/component/early_care_bottom_sheet.dart';
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/component/early_care_icon.dart';
 import 'package:early_care/component/early_care_picker.dart';
 import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
@@ -811,6 +812,28 @@ class _Login2 extends State<Login2> {
 
               Container(
                 child: getDate(),
+              ),
+
+              // EarlyCareIcon(
+              //   isBadge: true,
+              //   //badgeCount: 5,
+              //   widget: SvgPicture.asset(
+              //     Assets.imagesIconCart,
+              //   ),
+              // ),
+
+              Container(
+                child: GestureDetector(
+                  onTap: (){
+                    print("icon");
+                  },
+                  child: EarlyCareIcon(
+                    isBadge: true,
+                    badgeCount: 5,
+                    isActive: true,
+                    filePath: Assets.imagesIconCart,
+                  ),
+                ),
               ),
             ],
           ),
