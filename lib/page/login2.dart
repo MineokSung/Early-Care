@@ -634,7 +634,7 @@ class _Login2 extends State<Login2> {
                   prefix: Text("prefixTouch"),
                   //prefixOnTap: testPrint,
                   //suffix: Icon(Icons.call),
-                  suffix: Text("suffix"),
+                  //suffix: Text("suffix"),
                   label: "asdasd",
                   width: 300,
                   helperText: "helper",

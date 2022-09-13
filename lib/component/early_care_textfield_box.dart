@@ -114,7 +114,7 @@ class EarlyCareTextFieldBox extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 isDense: true,
-                contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 18,),
+                contentPadding: _textPadding(),
                 prefixIcon: prefix == null ? null : _prefixLine(),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 0,
@@ -151,6 +151,22 @@ class EarlyCareTextFieldBox extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  EdgeInsets _textPadding(){
+    if(padding != null){
+      return padding!;
+    }
+    if(suffix != null && prefix != null){
+      return const EdgeInsets.symmetric(vertical: 18);
+    }
+    if(suffix != null){
+      return const EdgeInsets.only(left: 15, top: 18, bottom: 18);
+    }
+    if(prefix != null){
+      return const EdgeInsets.only(right: 15, top: 18, bottom: 18);
+    }
+    return const EdgeInsets.symmetric(vertical: 18, horizontal: 15);
   }
 
   TextAlign _textAlign(){
