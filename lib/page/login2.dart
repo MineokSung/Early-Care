@@ -9,6 +9,7 @@ import 'package:early_care/component/early_care_picker.dart';
 import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
+import 'package:early_care/component/early_care_tool_tip.dart';
 import 'package:early_care/component/early_care_top_navigation_bar.dart';
 import 'package:early_care/component/test.dart';
 import 'package:early_care/generated/assets.dart';
@@ -638,7 +639,9 @@ class _Login2 extends State<Login2> {
                   //suffix: Text("suffix"),
                   label: "asdasd",
                   width: 300,
+                  //padding: EdgeInsets.symmetric(horizontal: 30),
                   helperText: "helper",
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
                   boxBorderRadius: 5,boxColor: Colors.white,
                   enableBorderColor: Colors.blue,
                   //suffixOnTap: deleteText,
@@ -850,11 +853,19 @@ class _Login2 extends State<Login2> {
               ),
 
               Container(
+                color: Colors.blue,
                 child: EarlyCareTopNavigationBar(
                   title: "title",
-                  iconCount: 3,
                   isTitleBottom: true,
+                  //icons: [Assets.imagesIconAdd, Assets.imagesIconCancel],
                   //calendarClear: TopNavigationBarIcon.calendarClear,
+                ),
+              ),
+
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: EarlyCareToolTip(
+                  text: "Tooltip",
                 ),
               ),
             ],

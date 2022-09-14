@@ -14,5 +14,6 @@ class Assets {
   static const String imagesIconRight = 'assets/images/icon_right.svg';
   static const String imagesPickerHorizontalBottom = 'assets/images/picker_horizontal_bottom.svg';
   static const String imagesPickerHorizontalTop = 'assets/images/picker_horizontal_top.svg';
+  static const String imagesToolTipPointer = 'assets/images/tool_tip_pointer.svg';
 
 }
