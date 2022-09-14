@@ -1,5 +1,4 @@
 import 'package:early_care/component/color_info.dart';
-import 'package:early_care/component/early_care_button.dart';
 import 'package:flutter/material.dart';
 
 class EarlyCareProgressBar extends StatefulWidget {
@@ -65,7 +64,7 @@ class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
       return widget.titleLeft!;
     }
 
-    return SizedBox();
+    return const SizedBox();
   }
 
   Widget valueInfo() {
@@ -73,6 +72,6 @@ class _EarlyCareProgressBar extends State<EarlyCareProgressBar> {
       return widget.titleRight!;
     }
 
-    return SizedBox();
+    return const SizedBox();
   }
 }

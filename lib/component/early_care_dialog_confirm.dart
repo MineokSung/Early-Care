@@ -1,4 +1,3 @@
-import 'package:early_care/component/color_info.dart';
 import 'package:early_care/component/early_care_button.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
   final Color? informationColor;
   final Color? correctColor;
   final Color? cancelColor;
-  final Color? correctBackgroundColor;
+  final Color correctBackgroundColor;
   final Color? cancelBackgroundColor;
   final double? titleFontSize;
   final double? informationFontSize;
@@ -19,14 +18,14 @@ class EarlyCareDialogConfirm extends StatelessWidget {
   final EdgeInsets? titlePadding;
   final EdgeInsets? contentPadding;
   final EdgeInsets? actionPadding;
-  bool isHorizontal;
-  bool isShowCancel;
+  final bool isHorizontal;
+  final bool isShowCancel;
   final bool? isBorder;
   final Widget? widget;
   final Function()? correctOnPressed;
   final Function()? cancelOnPressed;
 
-  EarlyCareDialogConfirm({
+  const EarlyCareDialogConfirm({
     super.key,
     this.title,
     required this.information,
@@ -36,7 +35,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
     this.informationColor,
     this.correctColor,
     this.cancelColor,
-    this.correctBackgroundColor,
+    this.correctBackgroundColor = Colors.white,
     this.cancelBackgroundColor,
     this.titleFontSize,
     this.informationFontSize,
@@ -70,7 +69,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
       title: title == null
           ? null
           : Text(
-              title ?? '',
+              title!,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: titleFontSize,
@@ -126,7 +125,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
   EdgeInsets actionPaddingInfo() {
     if (actionPadding != null) {
       return actionPadding!;
-    } else if (isShowCancel && isHorizontal == true) {
+    } else if (isShowCancel && isHorizontal) {
       return const EdgeInsets.only(bottom: 30, left: 25, right: 25);
     }
     return const EdgeInsets.only(top: 30, bottom: 30, left: 25, right: 25);
@@ -147,7 +146,7 @@ class EarlyCareDialogConfirm extends StatelessWidget {
         ),
       );
     }
-    if (isShowCancel && isHorizontal == true) {
+    if (isShowCancel && isHorizontal) {
       //horizontal confirm button and cancel button
       return Row(
         children: [

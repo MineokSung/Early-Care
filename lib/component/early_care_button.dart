@@ -7,17 +7,17 @@ class EarlyCareButton extends StatelessWidget {
   final EdgeInsets? padding;
   final String text;
   final double? fontSize;
-  final double? width;
+  final double width;
   final double? height;
-  final Color? backgroundColor;
+  final Color backgroundColor;
   final Color? clickBackgroundColor;
   final Color? clickTextColor;
   final Color? textColor;
-  final Color? borderColor;
-  final MainAxisAlignment? mainAxisAlignment;
+  final Color borderColor;
+  final MainAxisAlignment mainAxisAlignment;
   final bool? isActivated;
   final bool? isBorder;
-  final bool? isPlus;
+  final bool isPlus;
   final FontWeight? fontWeight;
   final double? radius;
   final Function()? onPressed;
@@ -27,14 +27,14 @@ class EarlyCareButton extends StatelessWidget {
     required this.text,
     this.padding,
     this.fontSize,
-    this.width,
+    this.width = double.infinity,
     this.height,
-    this.backgroundColor,
+    this.backgroundColor = ColorInfo.mainColor,
     this.clickBackgroundColor,
     this.clickTextColor,
     this.textColor,
-    this.borderColor,
-    this.mainAxisAlignment,
+    this.borderColor = Colors.black,
+    this.mainAxisAlignment = MainAxisAlignment.center,
     this.isActivated,
     this.isBorder = false,
     this.isPlus = false,
@@ -46,7 +46,7 @@ class EarlyCareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? double.infinity,
+      width: width,
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -59,11 +59,11 @@ class EarlyCareButton extends StatelessWidget {
             side: isBorder == false
                 ? BorderSide.none
                 : BorderSide(
-                    color: borderColor ?? Colors.black,
+                    color: borderColor,
                   ),
             borderRadius: BorderRadius.circular(radius ?? 16),
           ),
-          backgroundColor: backgroundColor ?? ColorInfo.mainColor,
+          backgroundColor: backgroundColor,
         ),
         onPressed: () {
           if (onPressed != null) {
@@ -71,9 +71,9 @@ class EarlyCareButton extends StatelessWidget {
           }
         },
         child: Row(
-          mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+          mainAxisAlignment: mainAxisAlignment,
           children: [
-            !isPlus! ? const SizedBox() : Container(
+            !isPlus ? const SizedBox() : Container(
               margin: const EdgeInsets.only(right: 10),
               child: SvgPicture.asset(
                 Assets.imagesIconPlus,
