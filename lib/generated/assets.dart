@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String imagesIconAdd = 'assets/images/icon_add.svg';
+  static const String imagesIconBookmark = 'assets/images/icon_bookmark.svg';
+  static const String imagesIconCalendarClear = 'assets/images/icon_calendar_clear.svg';
   static const String imagesIconCancel = 'assets/images/icon_cancel.svg';
   static const String imagesIconCart = 'assets/images/icon_cart.svg';
   static const String imagesIconEarlyCareGreen = 'assets/images/icon_early_care_green.svg';

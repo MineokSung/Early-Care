@@ -9,6 +9,7 @@ import 'package:early_care/component/early_care_picker.dart';
 import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
+import 'package:early_care/component/early_care_top_navigation_bar.dart';
 import 'package:early_care/component/test.dart';
 import 'package:early_care/generated/assets.dart';
 import 'package:flutter/material.dart';
@@ -845,6 +846,15 @@ class _Login2 extends State<Login2> {
                     isActive: true,
                     filePath: Assets.imagesIconCart,
                   ),
+                ),
+              ),
+
+              Container(
+                child: EarlyCareTopNavigationBar(
+                  title: "title",
+                  iconCount: 3,
+                  isTitleBottom: true,
+                  //calendarClear: TopNavigationBarIcon.calendarClear,
                 ),
               ),
             ],
