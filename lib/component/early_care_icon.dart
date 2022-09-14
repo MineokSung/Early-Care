@@ -1,8 +1,4 @@
 import 'package:early_care/component/color_info.dart';
-import 'package:early_care/component/early_care_button.dart';
-import 'package:early_care/generated/assets.dart';
-import 'package:early_care/page/login2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +12,7 @@ class EarlyCareIcon extends StatefulWidget {
   final double? height;
   final Color? activeColor;
 
-  EarlyCareIcon({
+  const EarlyCareIcon({
     super.key,
     required this.filePath,
     this.label,
@@ -55,12 +51,9 @@ class _EarlyCareIcon extends State<EarlyCareIcon> {
               // width: widget.width,
               // height: widget.height,
 
-              child: Container(
-                child: SvgPicture.asset(
-                  widget.filePath,
-                  color: widget.isActive! ? widget.activeColor : ColorInfo.silver,
-                ),
-                //color: widget.isActive! ? widget.activeColor : ColorInfo.silver,
+              child: SvgPicture.asset(
+                widget.filePath,
+                color: widget.isActive! ? widget.activeColor : ColorInfo.silver,
               ),
             ),
             _badgeInfo(),
@@ -84,7 +77,7 @@ class _EarlyCareIcon extends State<EarlyCareIcon> {
 
   Widget _badgeInfo() {
     if (!widget.isBadge! && widget.badgeCount == null) {
-      return SizedBox();
+      return const SizedBox();
     } else if (widget.isBadge! && widget.badgeCount != null || !widget.isBadge! && widget.badgeCount != null) {
       return Positioned(
         top: 6,
@@ -123,6 +116,6 @@ class _EarlyCareIcon extends State<EarlyCareIcon> {
       );
     }
 
-    return SizedBox();
+    return const SizedBox();
   }
 }

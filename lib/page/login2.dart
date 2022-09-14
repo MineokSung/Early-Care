@@ -1,12 +1,12 @@
 import 'dart:core';
+
 import 'package:collection/collection.dart';
-import 'package:early_care/component/early_care_bottom_sheet.dart';
-import 'package:early_care/component/early_care_dialog_confirm.dart';
-import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/color_info.dart';
+import 'package:early_care/component/early_care_bottom_sheet.dart';
+import 'package:early_care/component/early_care_button.dart';
+import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_icon.dart';
 import 'package:early_care/component/early_care_picker.dart';
-import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:early_care/component/early_care_tool_tip.dart';
@@ -282,7 +282,7 @@ class _Login2 extends State<Login2> {
                                 ),
                                 child: Text(
                                   datesNow[i].day,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: ColorInfo.calendarDayColor,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -348,7 +348,7 @@ class _Login2 extends State<Login2> {
         //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
-          return EarlyCareDialogConfirm(
+          return const EarlyCareDialogConfirm(
             title: 'title',
             isShowCancel: false,
             isHorizontal: true,
@@ -448,7 +448,7 @@ class _Login2 extends State<Login2> {
         //barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
-          return EarlyCareDialogConfirm(
+          return const EarlyCareDialogConfirm(
             title: 'title',
             isShowCancel: true,
             isHorizontal: false,
@@ -524,7 +524,7 @@ class _Login2 extends State<Login2> {
                   Expanded(
                     child: ElevatedButton(
                       //width: double.infinity,
-                      child: Text('TEST1'),
+                      child: const Text('TEST1'),
                       //backgroundColor: Colors.purpleAccent,
                       onPressed: () {
                         String asd = 'asd';
@@ -631,9 +631,10 @@ class _Login2 extends State<Login2> {
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: EarlyCareTextFieldBox(
-                  prefix: Text("prefixTouch"),
+                  // prefix: Text("prefixTouch"),
+                  prefix: const Icon(Icons.call),
                   //prefixOnTap: testPrint,
                   //suffix: Icon(Icons.call),
                   //suffix: Text("suffix"),
@@ -641,11 +642,13 @@ class _Login2 extends State<Login2> {
                   width: 300,
                   //padding: EdgeInsets.symmetric(horizontal: 30),
                   helperText: "helper",
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
-                  boxBorderRadius: 5,boxColor: Colors.white,
+                  boxBorderRadius: 5,
+                  boxColor: Colors.white,
                   enableBorderColor: Colors.blue,
                   //suffixOnTap: deleteText,
                   controller: textController1,
+                  fontSize: 14,
+                  // padding: const EdgeInsets.symmetric(horizontal: 20,),
                 ),
               ),
 
@@ -659,7 +662,7 @@ class _Login2 extends State<Login2> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         Text(
                           "title",
                         ),
@@ -683,19 +686,19 @@ class _Login2 extends State<Login2> {
                 ),
               ),
 
-              Container(
-                margin: const EdgeInsets.only(top: 30),
-                child: const EarlyCareProgressBar(
-                  value: (1 / 6) * 2,
-                  titleLeft: Text(
-                    "titleLeft",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(top: 30),
+              //   child: const EarlyCareProgressBar(
+              //     value: (1 / 6) * 2,
+              //     titleLeft: Text(
+              //       "titleLeft",
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         color: Colors.blue,
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
@@ -723,10 +726,10 @@ class _Login2 extends State<Login2> {
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
-                child: EarlyCareTextFieldLine(
+                child: const EarlyCareTextFieldLine(
                   fontSize: 32,
                   textInputAlign: TextAlign.center,
-                  textfieldPadding: const EdgeInsets.symmetric(horizontal: 50),
+                  textfieldPadding: EdgeInsets.symmetric(horizontal: 50),
                   enableBorderColor: Colors.grey,
                   focusBorderColor: ColorInfo.mainColor,
                   hint: '닉네임',
@@ -774,11 +777,11 @@ class _Login2 extends State<Login2> {
                 child: Column(
                   children: [
                     Text(widget.cupertinoResult),
-                    Container(
+                    SizedBox(
                       width: 300,
                       height: 350,
                       child: EarlyCarePicker(
-                        data: ["11", "12", "13", "14", "15", "16", "17", "18", "19"],
+                        data: const ["11", "12", "13", "14", "15", "16", "17", "18", "19"],
                         isHorizontal: true,
                         callback: (val) {
                           print('callbackFunction: $val');
@@ -838,17 +841,15 @@ class _Login2 extends State<Login2> {
               //   ),
               // ),
 
-              Container(
-                child: GestureDetector(
-                  onTap: (){
-                    print("icon");
-                  },
-                  child: EarlyCareIcon(
-                    isBadge: true,
-                    badgeCount: 5,
-                    isActive: true,
-                    filePath: Assets.imagesIconCart,
-                  ),
+              GestureDetector(
+                onTap: (){
+                  print("icon");
+                },
+                child: const EarlyCareIcon(
+                  isBadge: true,
+                  badgeCount: 5,
+                  isActive: true,
+                  filePath: Assets.imagesIconCart,
                 ),
               ),
 

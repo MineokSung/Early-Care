@@ -1,7 +1,5 @@
 import 'package:early_care/component/color_info.dart';
-import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/generated/assets.dart';
-import 'package:early_care/page/login2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +15,7 @@ class EarlyCarePicker extends StatefulWidget {
   final Widget? titleLeft;
   final Widget? titleRight;
   final int? initPosition;
-  final bool? isHorizontal;
+  final bool isHorizontal;
   final List<dynamic> data;
   final Function(String) callback;
 
@@ -54,7 +52,7 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
   }
 
   Widget pickerDirection() {
-    if (widget.isHorizontal == true) {
+    if (widget.isHorizontal) {
       return RotatedBox(
         quarterTurns: 3,
         child: _picker(),
@@ -66,7 +64,7 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
   }
 
   Widget selectLine() {
-    if (widget.isHorizontal == true) {
+    if (widget.isHorizontal) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

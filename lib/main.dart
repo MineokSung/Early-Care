@@ -1,6 +1,5 @@
 
 import 'package:early_care/page/login.dart';
-import 'package:early_care/page/splash.dart';
 import 'package:flutter/material.dart';
 
 import 'page/login2.dart';
