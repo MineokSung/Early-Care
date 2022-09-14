@@ -5,12 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class EarlyCareIcon extends StatefulWidget {
   final String filePath;
   final String? label;
-  final bool? isBadge;
-  final bool? isActive;
+  final bool isBadge;
+  final bool isActive;
   final int? badgeCount;
   final double? width;
   final double? height;
-  final Color? activeColor;
+  final Color activeColor;
 
   const EarlyCareIcon({
     super.key,
@@ -47,73 +47,75 @@ class _EarlyCareIcon extends State<EarlyCareIcon> {
                 left: 27,
                 right: 27,
               ),
-              //padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-              // width: widget.width,
-              // height: widget.height,
-
               child: SvgPicture.asset(
                 widget.filePath,
-                color: widget.isActive! ? widget.activeColor : ColorInfo.silver,
+                color: widget.isActive ? widget.activeColor : ColorInfo.silver,
               ),
             ),
             _badgeInfo(),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5, bottom: 3),
-          child: widget.label == null
-              ? null
-              : Text(
-                  widget.label!,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: widget.isActive! ? widget.activeColor : ColorInfo.silver,
-                  ),
-                ),
+
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 5, bottom: 3),
+        //   child: widget.label == null ? null : Text(
+        //           widget.label!,
+        //           style: TextStyle(
+        //             fontSize: 10,
+        //             color: widget.isActive ? widget.activeColor : ColorInfo.silver,
+        //           ),
+        //         ),
+        // ),
+
+        Visibility(
+          visible: widget.label != null,//not null = visible, null = gone
+          child: Text(
+            widget.label ?? '',
+            style: TextStyle(
+              fontSize: 10,
+              color: widget.isActive ? widget.activeColor : ColorInfo.silver,
+            ),
+          ),
         ),
+
       ],
     );
   }
 
+  Widget _badgeCount(double positionedTop, double positionedRight, double size, {Widget? count}) {
+    return Positioned(
+      top: positionedTop,
+      right: positionedRight,
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(size),
+          color: Colors.red,
+        ),
+        child: count,
+      ),
+    );
+  }
+
   Widget _badgeInfo() {
-    if (!widget.isBadge! && widget.badgeCount == null) {
+    if (!widget.isBadge && widget.badgeCount == null) {
       return const SizedBox();
-    } else if (widget.isBadge! && widget.badgeCount != null || !widget.isBadge! && widget.badgeCount != null) {
-      return Positioned(
-        top: 6,
-        right: 23,
-        child: Container(
-          width: 12,
-          height: 12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.red,
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "${widget.badgeCount}",
-              style: const TextStyle(
-                fontSize: 8,
-                color: Colors.white,
-              ),
+    } else if (widget.isBadge && widget.badgeCount != null || !widget.isBadge && widget.badgeCount != null) {
+      return _badgeCount(6, 23, 12,
+        count: Align(
+          alignment: Alignment.center,
+          child: Text(
+            "${widget.badgeCount}",
+            style: const TextStyle(
+              fontSize: 8,
+              color: Colors.white,
             ),
           ),
         ),
       );
-    } else if (widget.isBadge! && widget.badgeCount == null) {
-      return Positioned(
-        top: 10,
-        right: 25,
-        child: Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.red,
-          ),
-        ),
-      );
+    } else if (widget.isBadge && widget.badgeCount == null) {
+      return _badgeCount(10, 25, 8);
     }
 
     return const SizedBox();

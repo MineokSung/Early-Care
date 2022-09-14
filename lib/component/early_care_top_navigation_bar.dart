@@ -1,40 +1,19 @@
-import 'package:early_care/component/color_info.dart';
 import 'package:early_care/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-enum TopNavigationBarIcon {
-  bookmark(1),
-  add(2),
-  calendarClear(3);
-
-  const TopNavigationBarIcon(this.newIndex);
-  final int newIndex;
-
-  //int get newIndex => index+1;
-}
-
 class EarlyCareTopNavigationBar extends StatelessWidget {
   final String title;
-  final double? fontSize;
+  final double fontSize;
   final bool isTitleBottom;
   final List<String>? icons;
-
-
-
-  // final TopNavigationBarIcon? bookmark;
-  // final TopNavigationBarIcon? add;
-  // final TopNavigationBarIcon? calendarClear;
 
   const EarlyCareTopNavigationBar({
     super.key,
     required this.title,
-    this.fontSize,
+    this.fontSize = 20,
     this.isTitleBottom = false,
     this.icons,
-    // this.bookmark,
-    // this.add,
-    // this.calendarClear,
   });
 
   @override
@@ -47,7 +26,7 @@ class EarlyCareTopNavigationBar extends StatelessWidget {
       title,
       textAlign: icons == null || icons!.length == 1 ? TextAlign.center : TextAlign.left,
       style: TextStyle(
-        fontSize: fontSize ?? 20,
+        fontSize: fontSize,
         color: Colors.black,
       ),
     );

@@ -1,7 +1,4 @@
-import 'package:early_care/component/color_info.dart';
-import 'package:early_care/generated/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 enum ToolTip {
   bottomRight,
@@ -17,13 +14,13 @@ enum ToolTip {
 class EarlyCareToolTip extends StatelessWidget {
   final String text;
   final ToolTip? direction;
-  final Color? backgroundColor;
+  final Color backgroundColor;
 
   const EarlyCareToolTip({
     super.key,
     required this.text,
     this.direction,
-    this.backgroundColor,
+    this.backgroundColor = Colors.black,
   });
 
   @override
@@ -39,7 +36,7 @@ class EarlyCareToolTip extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: backgroundColor ?? Colors.black,
+        color: backgroundColor,
       ),
       child: Container(color: Colors.greenAccent,
         child: Text(

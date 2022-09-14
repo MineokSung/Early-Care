@@ -7,6 +7,7 @@ import 'package:early_care/component/early_care_button.dart';
 import 'package:early_care/component/early_care_dialog_confirm.dart';
 import 'package:early_care/component/early_care_icon.dart';
 import 'package:early_care/component/early_care_picker.dart';
+import 'package:early_care/component/early_care_progress_bar.dart';
 import 'package:early_care/component/early_care_textfield_box.dart';
 import 'package:early_care/component/early_care_textfield_line.dart';
 import 'package:early_care/component/early_care_tool_tip.dart';
@@ -20,6 +21,8 @@ import 'package:intl/intl.dart';
 class Login2 extends StatefulWidget {
   TextPosition textPosition = const TextPosition(offset: 10);
   String cupertinoResult = 'asd';
+
+  Login2({super.key});
 
   //EarlyCarePicker earlyCarePicker = EarlyCarePicker(data: data, setDataCallbackListener: setDataCallbackListener)
   //final controller = TextSelection.fromPosition(10);
@@ -350,8 +353,10 @@ class _Login2 extends State<Login2> {
         builder: (BuildContext context) {
           return const EarlyCareDialogConfirm(
             title: 'title',
-            isShowCancel: false,
-            isHorizontal: true,
+            isShowCancel: true,
+            isHorizontal: false,
+            isCorrectBorder: false,
+            isCancelBorder: true,
 
             // cancelBackgroundColor: Colors.white,
             // cancelColor: Colors.black,
@@ -413,7 +418,8 @@ class _Login2 extends State<Login2> {
         ),
         builder: (BuildContext context) {
           return EarlyCareBottomSheet(
-            isCancelButton: true,
+            isCancelButton: false,
+
             title: const Text(
               '통신사를 선택해주세요',
               style: TextStyle(
@@ -537,6 +543,7 @@ class _Login2 extends State<Login2> {
                       //width: 20,
                       text: '확인' ?? '취소',
                       isPlus: true,
+                      radius: 50,
                       // textColor: Colors.blue,
                       // fontSize: 20,
                       // backgroundColor: Colors.cyan,
@@ -686,19 +693,19 @@ class _Login2 extends State<Login2> {
                 ),
               ),
 
-              // Container(
-              //   margin: const EdgeInsets.only(top: 30),
-              //   child: const EarlyCareProgressBar(
-              //     value: (1 / 6) * 2,
-              //     titleLeft: Text(
-              //       "titleLeft",
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         color: Colors.blue,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: const EarlyCareProgressBar(
+                  value: (1 / 6) * 2,
+                  titleLeft: Text(
+                    "titleLeft",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
 
               Container(
                 margin: const EdgeInsets.only(top: 30),
@@ -847,15 +854,15 @@ class _Login2 extends State<Login2> {
                 },
                 child: const EarlyCareIcon(
                   isBadge: true,
-                  badgeCount: 5,
-                  isActive: true,
+                  //badgeCount: 5,
+                  isActive: false,
                   filePath: Assets.imagesIconCart,
                 ),
               ),
 
               Container(
                 color: Colors.blue,
-                child: EarlyCareTopNavigationBar(
+                child: const EarlyCareTopNavigationBar(
                   title: "title",
                   isTitleBottom: true,
                   //icons: [Assets.imagesIconAdd, Assets.imagesIconCancel],
@@ -864,8 +871,8 @@ class _Login2 extends State<Login2> {
               ),
 
               Container(
-                margin: EdgeInsets.only(top: 10),
-                child: EarlyCareToolTip(
+                margin: const EdgeInsets.only(top: 10),
+                child: const EarlyCareToolTip(
                   text: "Tooltip",
                 ),
               ),

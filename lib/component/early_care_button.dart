@@ -6,40 +6,36 @@ import 'package:flutter_svg/flutter_svg.dart';
 class EarlyCareButton extends StatelessWidget {
   final EdgeInsets? padding;
   final String text;
-  final double? fontSize;
+  final double fontSize;
   final double width;
   final double? height;
   final Color backgroundColor;
-  final Color? clickBackgroundColor;
-  final Color? clickTextColor;
-  final Color? textColor;
+  final Color textColor;
   final Color borderColor;
   final MainAxisAlignment mainAxisAlignment;
-  final bool? isActivated;
-  final bool? isBorder;
+  final bool isActivated;
+  final bool isBorder;
   final bool isPlus;
-  final FontWeight? fontWeight;
-  final double? radius;
+  final FontWeight fontWeight;
+  final double radius;
   final Function()? onPressed;
 
   const EarlyCareButton({
     super.key,
     required this.text,
     this.padding,
-    this.fontSize,
+    this.fontSize = 20,
     this.width = double.infinity,
     this.height,
     this.backgroundColor = ColorInfo.mainColor,
-    this.clickBackgroundColor,
-    this.clickTextColor,
-    this.textColor,
+    this.textColor = ColorInfo.white,
     this.borderColor = Colors.black,
     this.mainAxisAlignment = MainAxisAlignment.center,
-    this.isActivated,
+    this.isActivated = true,
     this.isBorder = false,
     this.isPlus = false,
-    this.fontWeight,
-    this.radius,
+    this.fontWeight = FontWeight.bold,
+    this.radius = 16,
     this.onPressed,
   });
 
@@ -56,12 +52,12 @@ class EarlyCareButton extends StatelessWidget {
                 vertical: 15,horizontal: 12
               ),
           shape: RoundedRectangleBorder(
-            side: isBorder == false
+            side: !isBorder
                 ? BorderSide.none
                 : BorderSide(
                     color: borderColor,
                   ),
-            borderRadius: BorderRadius.circular(radius ?? 16),
+            borderRadius: BorderRadius.circular(radius),
           ),
           backgroundColor: backgroundColor,
         ),
@@ -82,9 +78,9 @@ class EarlyCareButton extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                color: textColor ?? ColorInfo.white,
-                fontSize: fontSize ?? 20,
-                fontWeight: fontWeight ?? FontWeight.bold,
+                color: textColor,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
               ),
             ),
           ],

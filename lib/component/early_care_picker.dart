@@ -7,13 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class EarlyCarePicker extends StatefulWidget {
   final double? width;
   final double? height;
-  final double? minHeight;
-  final double? borderRadius;
-  final double? value;
-  final Color? color;
-  final Color? backgroundColor;
-  final Widget? titleLeft;
-  final Widget? titleRight;
+  final Color color;
   final int? initPosition;
   final bool isHorizontal;
   final List<dynamic> data;
@@ -23,13 +17,7 @@ class EarlyCarePicker extends StatefulWidget {
     super.key,
     this.width,
     this.height,
-    this.minHeight,
-    this.borderRadius,
-    this.value,
-    this.color,
-    this.backgroundColor,
-    this.titleLeft,
-    this.titleRight,
+    this.color = Colors.black,
     this.initPosition,
     this.isHorizontal = false,
     required this.data,
@@ -48,73 +36,87 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return pickerDirection();
+    return _pickerDirection();
   }
 
-  Widget pickerDirection() {
-    if (widget.isHorizontal) {
-      return RotatedBox(
-        quarterTurns: 3,
-        child: _picker(),
-      );
-    }
-    return Center(
+  Widget _pickerDirection() {
+    return RotatedBox(
+      quarterTurns: widget.isHorizontal ? 3 : 0,
       child: _picker(),
     );
   }
 
-  Widget selectLine() {
+  Widget _pickerHorizontalIcon({
+    required double width,
+    required double height,
+    EdgeInsets? margin,
+    String? imagePath = '',
+    Color? color,
+  }) {
+    return RotatedBox(
+      //bottom picker image
+      quarterTurns: widget.isHorizontal ? -1 : 0,
+      child: Container(
+        width: width,
+        height: height,
+        margin: margin,
+        color: color,
+        child: widget.isHorizontal
+            ? SvgPicture.asset(
+                imagePath!,
+              )
+            : null,
+      ),
+    );
+  }
+
+  Widget _selectLine() {
     if (widget.isHorizontal) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          RotatedBox(
-            //bottom picker image
-            quarterTurns: 3,
-            child: Container(
-              width: 28,
-              height: 20,
-              margin: const EdgeInsets.only(top: 30),
-              child: SvgPicture.asset(
-                //"${Paths.imagePath}picker_horizontal_bottom.svg",
-                Assets.imagesPickerHorizontalTop,
-                //"assets/images/picker_horizontal_bottom.svg",
-              ),
-            ),
-          ),
-          RotatedBox(
-            //top picker image
-            quarterTurns: 3,
-            child: Container(
-              width: 42,
-              height: 30,
-              margin: const EdgeInsets.only(bottom: 30),
-              child: SvgPicture.asset(
-                  Assets.imagesPickerHorizontalBottom
-              ),
-              //color: ColorInfo.mainColor,
-            ),
-          ),
-        ],
+        children: _selectLineHorizontalIcons(),
       );
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          width: 80,
-          height: 2,
-          color: ColorInfo.mainColor,
-        ),
-        Container(
-          width: 80,
-          height: 2,
-          color: ColorInfo.mainColor,
-        ),
-      ],
+      children: _selectLineVerticalIcons(),
     );
+  }
+
+  List<Widget> _selectLineHorizontalIcons() {
+    List<Widget> selectLineHorizontal = [
+      _pickerHorizontalIcon(
+        width: 28,
+        height: 20,
+        margin: const EdgeInsets.only(top: 30),
+        imagePath: Assets.imagesPickerHorizontalTop,
+      ),
+      _pickerHorizontalIcon(
+        width: 42,
+        height: 30,
+        margin: const EdgeInsets.only(bottom: 30),
+        imagePath: Assets.imagesPickerHorizontalBottom,
+      ),
+    ];
+    return selectLineHorizontal;
+  }
+
+  List<Widget> _selectLineVerticalIcons() {
+    List<Widget> selectLineVertical = [
+      _pickerHorizontalIcon(
+        width: 80,
+        height: 2,
+        color: ColorInfo.mainColor,
+      ),
+      _pickerHorizontalIcon(
+        width: 80,
+        height: 2,
+        color: ColorInfo.mainColor,
+      ),
+    ];
+    return selectLineVertical;
   }
 
   Widget _picker() {
@@ -128,13 +130,13 @@ class _EarlyCarePicker extends State<EarlyCarePicker> {
       onSelectedItemChanged: (int value) {
         widget.callback(widget.data[value]);
       },
-      selectionOverlay: selectLine(),
+      selectionOverlay: _selectLine(),
       itemBuilder: (BuildContext context, int index) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RotatedBox(
-              quarterTurns: widget.isHorizontal! ? 1 : 0,
+              quarterTurns: widget.isHorizontal ? 1 : 0,
               child: Center(
                 child: Text(
                   widget.data[index],
